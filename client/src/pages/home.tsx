@@ -7,6 +7,8 @@ import { useLocation } from "wouter";
 import MobileMenu from "@/components/mobile-menu";
 import CountdownTimer from "@/components/countdown-timer";
 import ConfettiBackground from "@/components/confetti-background";
+import ConfettiBurst from "@/components/confetti-burst";
+import NavigationBar from "@/components/navigation-bar";
 
 export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -79,80 +81,9 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-rose-50 relative">
       <ConfettiBackground />
+      <ConfettiBurst />
       
-      {/* Mobile Menu */}
-      <MobileMenu 
-        isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
-        navigationItems={navigationItems}
-        onNavigate={scrollToSection}
-      />
-
-      {/* Header Navigation */}
-      <header className="fixed top-0 w-full bg-rose-50/90 backdrop-blur-md z-40 py-4">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center">
-            {/* Logo/Monogram */}
-            <div className="w-12 h-12 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center">
-              <span className="text-white font-script text-xl font-bold">O&J</span>
-            </div>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex space-x-8">
-              <button 
-                onClick={() => scrollToSection('home')}
-                className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
-              >
-                Home
-              </button>
-              <button 
-                onClick={() => navigate('/our-story')}
-                className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
-              >
-                Our Story
-              </button>
-              <button 
-                onClick={() => navigate('/gallery')}
-                className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
-              >
-                Gallery
-              </button>
-            </nav>
-
-            {/* Right Navigation */}
-            <div className="hidden lg:flex space-x-6">
-              <button 
-                onClick={() => navigate('/registry')}
-                className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
-              >
-                Registry
-              </button>
-              <button 
-                onClick={() => navigate('/schedule')}
-                className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
-              >
-                Schedule
-              </button>
-              <button 
-                onClick={() => navigate('/schedule#rsvp')}
-                className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
-              >
-                RSVP
-              </button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="lg:hidden text-[hsl(342,69%,29%)]"
-              onClick={() => setIsMobileMenuOpen(true)}
-            >
-              <Menu className="h-6 w-6" />
-            </Button>
-          </div>
-        </div>
-      </header>
+      <NavigationBar currentPage="home" />
 
       {/* Hero Section */}
       <section id="home" className="min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20 relative">

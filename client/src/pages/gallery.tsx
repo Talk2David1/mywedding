@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { useLocation } from "wouter";
 import { useState } from "react";
 import ConfettiBackground from "@/components/confetti-background";
-import MobileMenu from "@/components/mobile-menu";
+import ConfettiBurst from "@/components/confetti-burst";
+import NavigationBar from "@/components/navigation-bar";
 
 export default function Gallery() {
   const [, navigate] = useLocation();
@@ -70,6 +71,9 @@ export default function Gallery() {
   return (
     <div className="min-h-screen bg-rose-50 relative">
       <ConfettiBackground />
+      <ConfettiBurst />
+      
+      <NavigationBar currentPage="gallery" />
       
       {/* Header */}
       <header className="bg-rose-50/90 backdrop-blur-md py-6 sticky top-0 z-40">

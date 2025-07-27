@@ -5,7 +5,8 @@ import { Card } from "@/components/ui/card";
 import { useLocation } from "wouter";
 import { useState } from "react";
 import ConfettiBackground from "@/components/confetti-background";
-import MobileMenu from "@/components/mobile-menu";
+import ConfettiBurst from "@/components/confetti-burst";
+import NavigationBar from "@/components/navigation-bar";
 
 export default function Registry() {
   const [, navigate] = useLocation();
@@ -35,6 +36,9 @@ export default function Registry() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50 to-pink-50 relative">
       <ConfettiBackground />
+      <ConfettiBurst />
+      
+      <NavigationBar currentPage="registry" />
       
       {/* Header */}
       <header className="bg-rose-50/90 backdrop-blur-md py-6 sticky top-0 z-40">
