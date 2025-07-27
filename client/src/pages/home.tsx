@@ -15,6 +15,14 @@ export default function Home() {
   const scrollToSection = (sectionId: string) => {
     if (sectionId === 'our-story') {
       navigate('/our-story');
+    } else if (sectionId === 'gallery') {
+      navigate('/gallery');
+    } else if (sectionId === 'registry') {
+      navigate('/registry');
+    } else if (sectionId === 'schedule') {
+      navigate('/schedule');
+    } else if (sectionId === 'rsvp') {
+      navigate('/schedule#rsvp');
     } else {
       const element = document.getElementById(sectionId);
       if (element) {
@@ -104,7 +112,7 @@ export default function Home() {
                 Our Story
               </button>
               <button 
-                onClick={() => scrollToSection('gallery')}
+                onClick={() => navigate('/gallery')}
                 className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
               >
                 Gallery
@@ -114,19 +122,19 @@ export default function Home() {
             {/* Right Navigation */}
             <div className="hidden lg:flex space-x-6">
               <button 
-                onClick={() => scrollToSection('registry')}
+                onClick={() => navigate('/registry')}
                 className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
               >
                 Registry
               </button>
               <button 
-                onClick={() => scrollToSection('schedule')}
+                onClick={() => navigate('/schedule')}
                 className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
               >
                 Schedule
               </button>
               <button 
-                onClick={() => scrollToSection('rsvp')}
+                onClick={() => navigate('/schedule#rsvp')}
                 className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
               >
                 RSVP
