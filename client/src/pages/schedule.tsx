@@ -1,20 +1,36 @@
 import { motion } from "framer-motion";
-import { Heart, ArrowLeft, MapPin, Clock, Phone } from "lucide-react";
+import { Heart, ArrowLeft, MapPin, Clock, Phone, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useLocation } from "wouter";
 import { useState } from "react";
 import CountdownTimer from "@/components/countdown-timer";
 import ConfettiBackground from "@/components/confetti-background";
+import MobileMenu from "@/components/mobile-menu";
 
 export default function Schedule() {
   const [, navigate] = useLocation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [rsvpForm, setRsvpForm] = useState({
     hasInvite: "",
     willAttend: "",
     fullName: "",
     email: ""
   });
+
+  const navigationItems = [
+    { label: "Home", href: "/" },
+    { label: "Our Story", href: "/our-story" },
+    { label: "Gallery", href: "/gallery" },
+    { label: "Registry", href: "/registry" },
+    { label: "Schedule", href: "/schedule" },
+    { label: "RSVP", href: "/schedule#rsvp" }
+  ];
+
+  const handleNavigation = (href: string) => {
+    navigate(href);
+    setIsMobileMenuOpen(false);
+  };
 
   const handleRsvpSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,6 +94,16 @@ export default function Schedule() {
                 RSVP
               </a>
             </div>
+
+            {/* Mobile Menu Button */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)]"
+              onClick={() => setIsMobileMenuOpen(true)}
+            >
+              <Menu className="h-6 w-6" />
+            </Button>
 
             {/* Logo/Monogram */}
             <div className="w-12 h-12 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center">
@@ -415,6 +441,14 @@ export default function Schedule() {
           </div>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+        navigationItems={navigationItems}
+        onNavigate={handleNavigation}
+      />
     </div>
   );
 }

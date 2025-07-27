@@ -1,12 +1,29 @@
 import { motion } from "framer-motion";
-import { Heart, ArrowLeft } from "lucide-react";
+import { Heart, ArrowLeft, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useLocation } from "wouter";
+import { useState } from "react";
 import ConfettiBackground from "@/components/confetti-background";
+import MobileMenu from "@/components/mobile-menu";
 
 export default function OurStory() {
   const [, navigate] = useLocation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const navigationItems = [
+    { label: "Home", href: "/" },
+    { label: "Our Story", href: "/our-story" },
+    { label: "Gallery", href: "/gallery" },
+    { label: "Registry", href: "/registry" },
+    { label: "Schedule", href: "/schedule" },
+    { label: "RSVP", href: "/schedule#rsvp" }
+  ];
+
+  const handleNavigation = (href: string) => {
+    navigate(href);
+    setIsMobileMenuOpen(false);
+  };
 
   const storyQuestions = [
     {
@@ -184,6 +201,16 @@ export default function OurStory() {
               </button>
             </div>
 
+            {/* Mobile Menu Button */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)]"
+              onClick={() => setIsMobileMenuOpen(true)}
+            >
+              <Menu className="h-6 w-6" />
+            </Button>
+
             {/* Logo/Monogram */}
             <div className="w-12 h-12 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center">
               <span className="text-white font-script text-xl font-bold">O&J</span>
@@ -309,6 +336,14 @@ export default function OurStory() {
           </div>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+        navigationItems={navigationItems}
+        onNavigate={handleNavigation}
+      />
     </div>
   );
 }
