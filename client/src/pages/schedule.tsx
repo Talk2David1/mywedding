@@ -10,32 +10,16 @@ import ConfettiBurst from "@/components/confetti-burst";
 import NavigationBar from "@/components/navigation-bar";
 
 export default function Schedule() {
-  const [, navigate] = useLocation();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [rsvpForm, setRsvpForm] = useState({
-    hasInvite: "",
-    willAttend: "",
-    fullName: "",
-    email: ""
+    name: "",
+    email: "",
+    attendance: "",
+    guests: "1",
+    message: ""
   });
-
-  const navigationItems = [
-    { label: "Home", href: "/" },
-    { label: "Our Story", href: "/our-story" },
-    { label: "Gallery", href: "/gallery" },
-    { label: "Registry", href: "/registry" },
-    { label: "Schedule", href: "/schedule" },
-    { label: "RSVP", href: "/schedule#rsvp" }
-  ];
-
-  const handleNavigation = (href: string) => {
-    navigate(href);
-    setIsMobileMenuOpen(false);
-  };
 
   const handleRsvpSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle RSVP submission
     console.log("RSVP submitted:", rsvpForm);
   };
 
@@ -45,77 +29,6 @@ export default function Schedule() {
       <ConfettiBurst />
       
       <NavigationBar currentPage="schedule" />
-      
-      {/* Header */}
-      <header className="bg-rose-50/90 backdrop-blur-md py-6 sticky top-0 z-40">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between">
-            <Button
-              variant="ghost"
-              onClick={() => navigate("/")}
-              className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] flex items-center gap-2"
-            >
-              <ArrowLeft className="h-5 w-5" />
-              Back to Home
-            </Button>
-            
-            {/* Navigation */}
-            <nav className="hidden md:flex space-x-8">
-              <button 
-                onClick={() => navigate("/")}
-                className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
-              >
-                Home
-              </button>
-              <button 
-                onClick={() => navigate("/our-story")}
-                className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
-              >
-                Our Story
-              </button>
-              <button 
-                onClick={() => navigate("/gallery")}
-                className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
-              >
-                Gallery
-              </button>
-            </nav>
-
-            <div className="hidden md:flex space-x-6">
-              <button 
-                onClick={() => navigate("/registry")}
-                className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
-              >
-                Registry
-              </button>
-              <span className="text-[hsl(342,69%,29%)] font-serif font-medium border-b-2 border-[hsl(342,69%,29%)]">
-                Schedule
-              </span>
-              <a 
-                href="#rsvp"
-                className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
-              >
-                RSVP
-              </a>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)]"
-              onClick={() => setIsMobileMenuOpen(true)}
-            >
-              <Menu className="h-6 w-6" />
-            </Button>
-
-            {/* Logo/Monogram */}
-            <div className="w-12 h-12 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center">
-              <span className="text-white font-script text-xl font-bold">O&J</span>
-            </div>
-          </div>
-        </div>
-      </header>
 
       <div className="container mx-auto px-4 py-12">
         {/* Hero Section */}
@@ -176,283 +89,154 @@ export default function Schedule() {
               </p>
 
               <form onSubmit={handleRsvpSubmit} className="space-y-6">
-                <div>
-                  <label className="block text-[hsl(342,69%,29%)] font-semibold mb-3">
-                    Did you receive an invite card via WhatsApp? *
-                  </label>
-                  <div className="flex gap-4">
-                    <label className="flex items-center">
-                      <input 
-                        type="radio" 
-                        name="hasInvite" 
-                        value="no"
-                        onChange={(e) => setRsvpForm(prev => ({ ...prev, hasInvite: e.target.value }))}
-                        className="mr-2" 
-                      />
-                      No
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Full Name *
                     </label>
-                    <label className="flex items-center">
-                      <input 
-                        type="radio" 
-                        name="hasInvite" 
-                        value="yes"
-                        onChange={(e) => setRsvpForm(prev => ({ ...prev, hasInvite: e.target.value }))}
-                        className="mr-2" 
-                      />
-                      Yes
+                    <input
+                      type="text"
+                      required
+                      value={rsvpForm.name}
+                      onChange={(e) => setRsvpForm({...rsvpForm, name: e.target.value})}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[hsl(342,69%,29%)] focus:border-transparent"
+                      placeholder="Your full name"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Email Address *
                     </label>
+                    <input
+                      type="email"
+                      required
+                      value={rsvpForm.email}
+                      onChange={(e) => setRsvpForm({...rsvpForm, email: e.target.value})}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[hsl(342,69%,29%)] focus:border-transparent"
+                      placeholder="your.email@example.com"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Will you attend? *
+                    </label>
+                    <select
+                      required
+                      value={rsvpForm.attendance}
+                      onChange={(e) => setRsvpForm({...rsvpForm, attendance: e.target.value})}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[hsl(342,69%,29%)] focus:border-transparent"
+                    >
+                      <option value="">Please select</option>
+                      <option value="yes">Yes, I'll be there!</option>
+                      <option value="no">Sorry, can't make it</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Number of Guests
+                    </label>
+                    <select
+                      value={rsvpForm.guests}
+                      onChange={(e) => setRsvpForm({...rsvpForm, guests: e.target.value})}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[hsl(342,69%,29%)] focus:border-transparent"
+                    >
+                      <option value="1">Just me</option>
+                      <option value="2">2 people</option>
+                      <option value="3">3 people</option>
+                      <option value="4">4 people</option>
+                      <option value="5+">5+ people</option>
+                    </select>
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-[hsl(342,69%,29%)] font-semibold mb-3">
-                    Will you be Attending? *
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Special Message (Optional)
                   </label>
-                  <div className="flex gap-4">
-                    <label className="flex items-center">
-                      <input 
-                        type="radio" 
-                        name="willAttend" 
-                        value="no"
-                        onChange={(e) => setRsvpForm(prev => ({ ...prev, willAttend: e.target.value }))}
-                        className="mr-2" 
-                      />
-                      No
-                    </label>
-                    <label className="flex items-center">
-                      <input 
-                        type="radio" 
-                        name="willAttend" 
-                        value="yes"
-                        onChange={(e) => setRsvpForm(prev => ({ ...prev, willAttend: e.target.value }))}
-                        className="mr-2" 
-                      />
-                      Yes
-                    </label>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-[hsl(342,69%,29%)] font-semibold mb-3">
-                    Full Name *
-                  </label>
-                  <input 
-                    type="text"
-                    value={rsvpForm.fullName}
-                    onChange={(e) => setRsvpForm(prev => ({ ...prev, fullName: e.target.value }))}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[hsl(342,69%,29%)]"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[hsl(342,69%,29%)] font-semibold mb-3">
-                    Email *
-                  </label>
-                  <input 
-                    type="email"
-                    value={rsvpForm.email}
-                    onChange={(e) => setRsvpForm(prev => ({ ...prev, email: e.target.value }))}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[hsl(342,69%,29%)]"
-                    required
+                  <textarea
+                    value={rsvpForm.message}
+                    onChange={(e) => setRsvpForm({...rsvpForm, message: e.target.value})}
+                    rows={4}
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[hsl(342,69%,29%)] focus:border-transparent"
+                    placeholder="Any special wishes or dietary requirements..."
                   />
                 </div>
 
                 <Button 
                   type="submit"
-                  className="w-full bg-[hsl(342,69%,29%)] text-white py-3 rounded-lg font-medium hover:bg-[hsl(342,60%,40%)] transition-colors"
+                  className="w-full py-3 bg-[hsl(342,69%,29%)] hover:bg-[hsl(342,60%,40%)] text-white font-serif text-lg"
                 >
-                  RSVP
+                  Send RSVP
                 </Button>
               </form>
             </Card>
           </motion.div>
         </section>
 
-        {/* Wedding Schedule Section */}
+        {/* Event Details Section */}
         <section className="mb-20">
           <motion.div 
-            className="text-center mb-12"
+            className="max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <div className="w-12 h-12 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center text-white font-bold text-xl">
-                02
+            <Card className="p-8 bg-white/80 backdrop-blur-sm border-0 shadow-lg">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-12 h-12 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center text-white font-bold text-xl">
+                  02
+                </div>
+                <h2 className="text-3xl font-serif text-[hsl(342,69%,29%)]">EVENT DETAILS</h2>
               </div>
-              <h2 className="text-3xl font-serif text-[hsl(342,69%,29%)]">Wedding Schedule</h2>
-            </div>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-              We are thrilled to share this day with you & look forward to your presence at our wedding.
-            </p>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* Date & Time */}
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <Clock className="h-6 w-6 text-[hsl(342,69%,29%)]" />
+                    <h3 className="text-xl font-serif text-[hsl(342,69%,29%)]">Date & Time</h3>
+                  </div>
+                  <div className="pl-9">
+                    <p className="text-lg font-medium text-gray-800">Saturday, August 2nd, 2025</p>
+                    <p className="text-gray-600">Ceremony begins at 11:00 AM</p>
+                    <p className="text-gray-600">Reception to follow</p>
+                  </div>
+                </div>
+
+                {/* Location */}
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <MapPin className="h-6 w-6 text-[hsl(342,69%,29%)]" />
+                    <h3 className="text-xl font-serif text-[hsl(342,69%,29%)]">Location</h3>
+                  </div>
+                  <div className="pl-9">
+                    <p className="text-lg font-medium text-gray-800">Aquila Events Hub</p>
+                    <p className="text-gray-600">Ikorodu, Lagos State</p>
+                    <p className="text-gray-600">Nigeria</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Contact Info */}
+              <div className="mt-8 pt-8 border-t border-gray-200">
+                <div className="flex items-center gap-3 mb-4">
+                  <Phone className="h-6 w-6 text-[hsl(342,69%,29%)]" />
+                  <h3 className="text-xl font-serif text-[hsl(342,69%,29%)]">Contact</h3>
+                </div>
+                <div className="pl-9">
+                  <p className="text-gray-700">For any questions or special arrangements:</p>
+                  <p className="text-lg font-medium text-gray-800 mt-2">+234 xxx xxx xxxx</p>
+                  <p className="text-gray-600">We can't wait to celebrate with you!</p>
+                </div>
+              </div>
+            </Card>
           </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            {/* Wedding Ceremony */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <Card className="p-8 bg-white/80 backdrop-blur-sm border-0 shadow-lg h-full">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center text-white font-bold text-xl">
-                    01
-                  </div>
-                  <h3 className="text-2xl font-serif text-[hsl(342,69%,29%)]">Wedding Ceremony</h3>
-                </div>
-                
-                <p className="text-gray-700 mb-8">
-                  Join us as we take our vows. Please arrive 15 minutes early to be seated before the ceremony begins
-                </p>
-
-                <div className="space-y-6">
-                  <div className="flex items-center gap-3">
-                    <Clock className="h-5 w-5 text-[hsl(342,69%,29%)]" />
-                    <div>
-                      <h4 className="font-semibold text-[hsl(342,69%,29%)]">Date</h4>
-                      <p className="text-gray-700">2nd August, 2025</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <Clock className="h-5 w-5 text-[hsl(342,69%,29%)]" />
-                    <div>
-                      <h4 className="font-semibold text-[hsl(342,69%,29%)]">Time</h4>
-                      <p className="text-gray-700">11:00AM</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <Phone className="h-5 w-5 text-[hsl(342,69%,29%)]" />
-                    <div>
-                      <h4 className="font-semibold text-[hsl(342,69%,29%)]">RSVP</h4>
-                      <p className="text-gray-700">+234 905 896 8649</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <MapPin className="h-5 w-5 text-[hsl(342,69%,29%)]" />
-                    <div>
-                      <h4 className="font-semibold text-[hsl(342,69%,29%)]">Location</h4>
-                      <p className="text-gray-700">Aquila Events Hub, No 40 Tos Benson Road Ikorodu Ikorodu, Lagos 100001</p>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </motion.div>
-
-            {/* Reception */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <Card className="p-8 bg-white/80 backdrop-blur-sm border-0 shadow-lg h-full">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 bg-[hsl(332,51%,70%)] rounded-full flex items-center justify-center text-white font-bold text-xl">
-                    02
-                  </div>
-                  <h3 className="text-2xl font-serif text-[hsl(342,69%,29%)]">Reception Celebration</h3>
-                </div>
-                
-                <p className="text-gray-700 mb-8">
-                  Join as we celebrate our love.
-                </p>
-
-                <div className="space-y-6">
-                  <div className="flex items-center gap-3">
-                    <Clock className="h-5 w-5 text-[hsl(332,51%,70%)]" />
-                    <div>
-                      <h4 className="font-semibold text-[hsl(332,51%,70%)]">Date</h4>
-                      <p className="text-gray-700">2nd August, 2025</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <Clock className="h-5 w-5 text-[hsl(332,51%,70%)]" />
-                    <div>
-                      <h4 className="font-semibold text-[hsl(332,51%,70%)]">Time</h4>
-                      <p className="text-gray-700">01:00PM</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <Phone className="h-5 w-5 text-[hsl(332,51%,70%)]" />
-                    <div>
-                      <h4 className="font-semibold text-[hsl(332,51%,70%)]">RSVP</h4>
-                      <p className="text-gray-700">+234 905 896 8649</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <MapPin className="h-5 w-5 text-[hsl(332,51%,70%)]" />
-                    <div>
-                      <h4 className="font-semibold text-[hsl(332,51%,70%)]">Location</h4>
-                      <p className="text-gray-700">Aquila Events Hub, No 40 Tos Benson Road Ikorodu Ikorodu, Lagos 100001</p>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </motion.div>
-          </div>
         </section>
-
-        {/* Action Buttons */}
-        <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              onClick={() => window.open("https://www.google.com/maps/dir//No+40+Tos+Benson+Road+Ikorodu+Ikorodu,+Lagos+100001/@6.610135,3.4171,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x103bedfd34f99b21:0x9d368bcb9e60e186!2m2!1d3.4995019!2d6.6101418", "_blank")}
-              className="bg-[hsl(342,69%,29%)] text-white px-8 py-3 rounded-full font-medium hover:bg-[hsl(342,60%,40%)] transition-colors"
-            >
-              Get Directions
-            </Button>
-            <Button 
-              onClick={() => navigate("/gallery")}
-              variant="outline"
-              className="border-[hsl(342,69%,29%)] text-[hsl(342,69%,29%)] px-8 py-3 rounded-full font-medium hover:bg-[hsl(342,69%,29%)] hover:text-white transition-colors"
-            >
-              View Gallery
-            </Button>
-          </div>
-        </motion.div>
-
-        {/* Bottom Banner */}
-        <div className="fixed bottom-0 left-0 right-0 bg-[hsl(342,69%,29%)] text-white py-3 text-center z-30">
-          <div className="flex justify-center items-center space-x-6 text-sm">
-            <button className="hover:text-[hsl(332,51%,70%)] transition-colors">Programme</button>
-            <span>|</span>
-            <button className="hover:text-[hsl(332,51%,70%)] transition-colors">Calendar</button>
-            <span>|</span>
-            <button 
-              onClick={() => window.open("https://www.google.com/maps/dir//No+40+Tos+Benson+Road+Ikorodu+Ikorodu,+Lagos+100001", "_blank")}
-              className="hover:text-[hsl(332,51%,70%)] transition-colors"
-            >
-              Get Direction
-            </button>
-            <span>|</span>
-            <button className="hover:text-[hsl(332,51%,70%)] transition-colors">Check Table No.</button>
-          </div>
-        </div>
       </div>
-
-      {/* Mobile Menu */}
-      <MobileMenu
-        isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
-        navigationItems={navigationItems}
-        onNavigate={handleNavigation}
-      />
     </div>
   );
 }

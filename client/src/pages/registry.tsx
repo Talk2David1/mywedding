@@ -9,23 +9,7 @@ import ConfettiBurst from "@/components/confetti-burst";
 import NavigationBar from "@/components/navigation-bar";
 
 export default function Registry() {
-  const [, navigate] = useLocation();
   const [copiedField, setCopiedField] = useState<string | null>(null);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const navigationItems = [
-    { label: "Home", href: "/" },
-    { label: "Our Story", href: "/our-story" },
-    { label: "Gallery", href: "/gallery" },
-    { label: "Registry", href: "/registry" },
-    { label: "Schedule", href: "/schedule" },
-    { label: "RSVP", href: "/schedule#rsvp" }
-  ];
-
-  const handleNavigation = (href: string) => {
-    navigate(href);
-    setIsMobileMenuOpen(false);
-  };
 
   const copyToClipboard = (text: string, field: string) => {
     navigator.clipboard.writeText(text);
@@ -39,77 +23,6 @@ export default function Registry() {
       <ConfettiBurst />
       
       <NavigationBar currentPage="registry" />
-      
-      {/* Header */}
-      <header className="bg-rose-50/90 backdrop-blur-md py-6 sticky top-0 z-40">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between">
-            <Button
-              variant="ghost"
-              onClick={() => navigate("/")}
-              className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] flex items-center gap-2"
-            >
-              <ArrowLeft className="h-5 w-5" />
-              Back to Home
-            </Button>
-            
-            {/* Navigation */}
-            <nav className="hidden md:flex space-x-8">
-              <button 
-                onClick={() => navigate("/")}
-                className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
-              >
-                Home
-              </button>
-              <button 
-                onClick={() => navigate("/our-story")}
-                className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
-              >
-                Our Story
-              </button>
-              <button 
-                onClick={() => navigate("/gallery")}
-                className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
-              >
-                Gallery
-              </button>
-            </nav>
-
-            <div className="hidden md:flex space-x-6">
-              <span className="text-[hsl(342,69%,29%)] font-serif font-medium border-b-2 border-[hsl(342,69%,29%)]">
-                Registry
-              </span>
-              <button 
-                onClick={() => navigate("/schedule")}
-                className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
-              >
-                Schedule
-              </button>
-              <button 
-                onClick={() => navigate("/schedule#rsvp")}
-                className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
-              >
-                RSVP
-              </button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)]"
-              onClick={() => setIsMobileMenuOpen(true)}
-            >
-              <Menu className="h-6 w-6" />
-            </Button>
-
-            {/* Logo/Monogram */}
-            <div className="w-12 h-12 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center">
-              <span className="text-white font-script text-xl font-bold">O&J</span>
-            </div>
-          </div>
-        </div>
-      </header>
 
       <div className="container mx-auto px-4 py-12">
         {/* Hero Section */}
@@ -175,172 +88,160 @@ export default function Registry() {
               we would truly appreciate it. Kindly find account details below.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* USD Account */}
-              <motion.div 
-                className="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl border border-green-200"
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <h3 className="text-2xl font-serif text-green-800 mb-6 text-center">$USD</h3>
-                <div className="space-y-4">
-                  <div>
-                    <label className="font-semibold text-green-700 block mb-1">Bank Name:</label>
-                    <div className="flex items-center justify-between bg-white p-3 rounded border">
-                      <span className="text-gray-800">Lead Bank</span>
+            {/* Account Details */}
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Account 1 */}
+              <div className="bg-gradient-to-br from-rose-100 to-pink-100 p-6 rounded-lg">
+                <h3 className="text-xl font-serif text-[hsl(342,69%,29%)] mb-4 text-center">
+                  Olufunbi's Account
+                </h3>
+                <div className="space-y-3">
+                  <div className="bg-white/80 p-3 rounded flex justify-between items-center">
+                    <span className="text-sm text-gray-600">Account Name:</span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium">Olufunbi Adeboyejo</span>
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => copyToClipboard("Lead Bank", "bank-usd")}
-                        className="text-green-600 hover:text-green-800"
+                        onClick={() => copyToClipboard("Olufunbi Adeboyejo", "funbi-name")}
+                        className="p-1 h-6 w-6"
                       >
-                        {copiedField === "bank-usd" ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                        {copiedField === "funbi-name" ? (
+                          <Check className="h-3 w-3 text-green-600" />
+                        ) : (
+                          <Copy className="h-3 w-3" />
+                        )}
                       </Button>
                     </div>
                   </div>
-                  <div>
-                    <label className="font-semibold text-green-700 block mb-1">Account Number:</label>
-                    <div className="flex items-center justify-between bg-white p-3 rounded border">
-                      <span className="text-gray-800">211163111348</span>
+                  <div className="bg-white/80 p-3 rounded flex justify-between items-center">
+                    <span className="text-sm text-gray-600">Account Number:</span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium">2206728391</span>
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => copyToClipboard("211163111348", "account-usd")}
-                        className="text-green-600 hover:text-green-800"
+                        onClick={() => copyToClipboard("2206728391", "funbi-number")}
+                        className="p-1 h-6 w-6"
                       >
-                        {copiedField === "account-usd" ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                        {copiedField === "funbi-number" ? (
+                          <Check className="h-3 w-3 text-green-600" />
+                        ) : (
+                          <Copy className="h-3 w-3" />
+                        )}
                       </Button>
                     </div>
                   </div>
-                  <div>
-                    <label className="font-semibold text-green-700 block mb-1">ACH Routing:</label>
-                    <div className="flex items-center justify-between bg-white p-3 rounded border">
-                      <span className="text-gray-800">101019644</span>
+                  <div className="bg-white/80 p-3 rounded flex justify-between items-center">
+                    <span className="text-sm text-gray-600">Bank:</span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium">UBA</span>
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => copyToClipboard("101019644", "ach-usd")}
-                        className="text-green-600 hover:text-green-800"
+                        onClick={() => copyToClipboard("UBA", "funbi-bank")}
+                        className="p-1 h-6 w-6"
                       >
-                        {copiedField === "ach-usd" ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                        {copiedField === "funbi-bank" ? (
+                          <Check className="h-3 w-3 text-green-600" />
+                        ) : (
+                          <Copy className="h-3 w-3" />
+                        )}
                       </Button>
-                    </div>
-                  </div>
-                  <div>
-                    <label className="font-semibold text-green-700 block mb-1">Wire Routing:</label>
-                    <div className="flex items-center justify-between bg-white p-3 rounded border">
-                      <span className="text-gray-800">101019644</span>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => copyToClipboard("101019644", "wire-usd")}
-                        className="text-green-600 hover:text-green-800"
-                      >
-                        {copiedField === "wire-usd" ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                      </Button>
-                    </div>
-                  </div>
-                  <div>
-                    <label className="font-semibold text-green-700 block mb-1">Account Type:</label>
-                    <div className="bg-white p-3 rounded border">
-                      <span className="text-gray-800">Checking</span>
-                    </div>
-                  </div>
-                  <div>
-                    <label className="font-semibold text-green-700 block mb-1">Bank Address:</label>
-                    <div className="bg-white p-3 rounded border">
-                      <span className="text-gray-800">1801 Main St., Kansas City, MO 64108</span>
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
-              {/* NGN Account */}
-              <motion.div 
-                className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-200"
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <h3 className="text-2xl font-serif text-blue-800 mb-6 text-center">₦NGN</h3>
-                <div className="space-y-4">
-                  <div>
-                    <label className="font-semibold text-blue-700 block mb-1">Bank:</label>
-                    <div className="flex items-center justify-between bg-white p-3 rounded border">
-                      <span className="text-gray-800">Access Bank</span>
+              {/* Account 2 */}
+              <div className="bg-gradient-to-br from-rose-100 to-pink-100 p-6 rounded-lg">
+                <h3 className="text-xl font-serif text-[hsl(342,69%,29%)] mb-4 text-center">
+                  Joseph's Account
+                </h3>
+                <div className="space-y-3">
+                  <div className="bg-white/80 p-3 rounded flex justify-between items-center">
+                    <span className="text-sm text-gray-600">Account Name:</span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium">Joseph Ayodele</span>
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => copyToClipboard("Access Bank", "bank-ngn")}
-                        className="text-blue-600 hover:text-blue-800"
+                        onClick={() => copyToClipboard("Joseph Ayodele", "joseph-name")}
+                        className="p-1 h-6 w-6"
                       >
-                        {copiedField === "bank-ngn" ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                        {copiedField === "joseph-name" ? (
+                          <Check className="h-3 w-3 text-green-600" />
+                        ) : (
+                          <Copy className="h-3 w-3" />
+                        )}
                       </Button>
                     </div>
                   </div>
-                  <div>
-                    <label className="font-semibold text-blue-700 block mb-1">Account Number:</label>
-                    <div className="flex items-center justify-between bg-white p-3 rounded border">
-                      <span className="text-gray-800">0725312756</span>
+                  <div className="bg-white/80 p-3 rounded flex justify-between items-center">
+                    <span className="text-sm text-gray-600">Account Number:</span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium">0775569088</span>
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => copyToClipboard("0725312756", "account-ngn")}
-                        className="text-blue-600 hover:text-blue-800"
+                        onClick={() => copyToClipboard("0775569088", "joseph-number")}
+                        className="p-1 h-6 w-6"
                       >
-                        {copiedField === "account-ngn" ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                        {copiedField === "joseph-number" ? (
+                          <Check className="h-3 w-3 text-green-600" />
+                        ) : (
+                          <Copy className="h-3 w-3" />
+                        )}
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="bg-white/80 p-3 rounded flex justify-between items-center">
+                    <span className="text-sm text-gray-600">Bank:</span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium">GT Bank</span>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => copyToClipboard("GT Bank", "joseph-bank")}
+                        className="p-1 h-6 w-6"
+                      >
+                        {copiedField === "joseph-bank" ? (
+                          <Check className="h-3 w-3 text-green-600" />
+                        ) : (
+                          <Copy className="h-3 w-3" />
+                        )}
                       </Button>
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </Card>
         </motion.div>
 
-        {/* Thank You */}
+        {/* Bottom Message */}
         <motion.div 
-          className="text-center mb-16"
+          className="text-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl font-script text-[hsl(342,69%,29%)] mb-8">
-            Thank you
-          </h2>
-          <Button 
-            onClick={() => navigate("/schedule")}
-            className="bg-[hsl(342,69%,29%)] text-white px-12 py-4 rounded-full text-lg font-medium hover:bg-[hsl(342,60%,40%)] transition-colors shadow-lg"
-          >
-            View Wedding Schedule
-          </Button>
+          <Card className="p-8 bg-white/80 backdrop-blur-sm border-0 shadow-lg max-w-2xl mx-auto">
+            <div className="flex justify-center mb-4">
+              <div className="w-16 h-16 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center">
+                <Heart className="text-white text-2xl fill-current" />
+              </div>
+            </div>
+            <h3 className="text-2xl font-serif text-[hsl(342,69%,29%)] mb-4">
+              With Love & Gratitude
+            </h3>
+            <p className="text-gray-700 leading-relaxed">
+              Your love, laughter, and presence mean everything to us as we start this beautiful journey together.
+            </p>
+          </Card>
         </motion.div>
-
-        {/* Bottom Banner */}
-        <div className="fixed bottom-0 left-0 right-0 bg-[hsl(342,69%,29%)] text-white py-3 text-center z-30">
-          <div className="flex justify-center items-center space-x-6 text-sm">
-            <button className="hover:text-[hsl(332,51%,70%)] transition-colors">Programme</button>
-            <span>|</span>
-            <button className="hover:text-[hsl(332,51%,70%)] transition-colors">Calendar</button>
-            <span>|</span>
-            <button className="hover:text-[hsl(332,51%,70%)] transition-colors">Get Direction</button>
-            <span>|</span>
-            <button className="hover:text-[hsl(332,51%,70%)] transition-colors">Check Table No.</button>
-          </div>
-        </div>
       </div>
-
-      {/* Mobile Menu */}
-      <MobileMenu
-        isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
-        navigationItems={navigationItems}
-        onNavigate={handleNavigation}
-      />
     </div>
   );
 }

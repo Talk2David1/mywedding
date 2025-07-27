@@ -8,43 +8,26 @@ import ConfettiBurst from "@/components/confetti-burst";
 import NavigationBar from "@/components/navigation-bar";
 
 export default function Gallery() {
-  const [, navigate] = useLocation();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const navigationItems = [
-    { label: "Home", href: "/" },
-    { label: "Our Story", href: "/our-story" },
-    { label: "Gallery", href: "/gallery" },
-    { label: "Registry", href: "/registry" },
-    { label: "Schedule", href: "/schedule" },
-    { label: "RSVP", href: "/schedule#rsvp" }
-  ];
-
-  const handleNavigation = (href: string) => {
-    navigate(href);
-    setIsMobileMenuOpen(false);
-  };
-
   const galleryPhotos = [
     {
       src: "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=800",
-      alt: "Beautiful couple portrait"
+      alt: "Elegant wedding couple portrait"
     },
     {
       src: "https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=800",
-      alt: "Dancing moment"
+      alt: "Bride and groom dancing"
     },
     {
       src: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=800",
-      alt: "Elegant formal wear"
+      alt: "Wedding couple in white formal wear"
     },
     {
       src: "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=800",
-      alt: "Romantic couple moment"
+      alt: "Couple sharing romantic moment"
     },
     {
-      src: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=800",
-      alt: "Wedding rings and flowers"
+      src: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&ixid=MnwxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=800",
+      alt: "Wedding rings on floral background"
     },
     {
       src: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=800",
@@ -63,7 +46,7 @@ export default function Gallery() {
       alt: "Wedding celebration"
     },
     {
-      src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=800",
+      src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?ixlib=rb-4.0.3&ixid=MnwxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=800",
       alt: "Couple laughing together"
     }
   ];
@@ -74,77 +57,6 @@ export default function Gallery() {
       <ConfettiBurst />
       
       <NavigationBar currentPage="gallery" />
-      
-      {/* Header */}
-      <header className="bg-rose-50/90 backdrop-blur-md py-6 sticky top-0 z-40">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between">
-            <Button
-              variant="ghost"
-              onClick={() => navigate("/")}
-              className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] flex items-center gap-2"
-            >
-              <ArrowLeft className="h-5 w-5" />
-              Back to Home
-            </Button>
-            
-            {/* Navigation */}
-            <nav className="hidden md:flex space-x-8">
-              <button 
-                onClick={() => navigate("/")}
-                className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
-              >
-                Home
-              </button>
-              <button 
-                onClick={() => navigate("/our-story")}
-                className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
-              >
-                Our Story
-              </button>
-              <span className="text-[hsl(342,69%,29%)] font-serif font-medium border-b-2 border-[hsl(342,69%,29%)]">
-                Gallery
-              </span>
-            </nav>
-
-            <div className="hidden md:flex space-x-6">
-              <button 
-                onClick={() => navigate("/registry")}
-                className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
-              >
-                Registry
-              </button>
-              <button 
-                onClick={() => navigate("/schedule")}
-                className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
-              >
-                Schedule
-              </button>
-              <button 
-                onClick={() => navigate("/schedule#rsvp")}
-                className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
-              >
-                RSVP
-              </button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)]"
-              onClick={() => setIsMobileMenuOpen(true)}
-            >
-              <Menu className="h-6 w-6" />
-            </Button>
-
-            {/* Logo/Monogram */}
-            <div className="w-12 h-12 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center">
-              <span className="text-white font-script text-xl font-bold">O&J</span>
-            </div>
-          </div>
-        </div>
-      </header>
 
       <div className="container mx-auto px-4 py-12">
         {/* Hero Section */}
@@ -225,35 +137,20 @@ export default function Gallery() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <Button 
-            onClick={() => navigate("/schedule")}
-            className="bg-[hsl(342,69%,29%)] text-white px-12 py-4 rounded-full text-lg font-medium hover:bg-[hsl(342,60%,40%)] transition-colors shadow-lg"
-          >
-            View Wedding Details
-          </Button>
-        </motion.div>
-
-        {/* Bottom Banner */}
-        <div className="fixed bottom-0 left-0 right-0 bg-[hsl(342,69%,29%)] text-white py-3 text-center z-30">
-          <div className="flex justify-center items-center space-x-6 text-sm">
-            <button className="hover:text-[hsl(332,51%,70%)] transition-colors">Programme</button>
-            <span>|</span>
-            <button className="hover:text-[hsl(332,51%,70%)] transition-colors">Calendar</button>
-            <span>|</span>
-            <button className="hover:text-[hsl(332,51%,70%)] transition-colors">Get Direction</button>
-            <span>|</span>
-            <button className="hover:text-[hsl(332,51%,70%)] transition-colors">Check Table No.</button>
+          <div className="flex justify-center mb-4">
+            <div className="w-16 h-16 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center">
+              <Heart className="text-white text-2xl fill-current" />
+            </div>
           </div>
-        </div>
+          <h3 className="text-2xl font-serif text-[hsl(342,69%,29%)] mb-4">
+            Love in Every Frame
+          </h3>
+          <p className="text-gray-700 leading-relaxed max-w-2xl mx-auto">
+            These moments capture the journey of our love story. Each photo tells a piece of our tale, 
+            from sweet beginnings to this beautiful celebration we're about to share with you.
+          </p>
+        </motion.div>
       </div>
-
-      {/* Mobile Menu */}
-      <MobileMenu
-        isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
-        navigationItems={navigationItems}
-        onNavigate={handleNavigation}
-      />
     </div>
   );
 }

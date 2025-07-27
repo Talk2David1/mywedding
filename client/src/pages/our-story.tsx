@@ -9,127 +9,36 @@ import ConfettiBurst from "@/components/confetti-burst";
 import NavigationBar from "@/components/navigation-bar";
 
 export default function OurStory() {
-  const [, navigate] = useLocation();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const navigationItems = [
-    { label: "Home", href: "/" },
-    { label: "Our Story", href: "/our-story" },
-    { label: "Gallery", href: "/gallery" },
-    { label: "Registry", href: "/registry" },
-    { label: "Schedule", href: "/schedule" },
-    { label: "RSVP", href: "/schedule#rsvp" }
-  ];
-
-  const handleNavigation = (href: string) => {
-    navigate(href);
-    setIsMobileMenuOpen(false);
-  };
-
   const storyQuestions = [
     {
-      question: "How Did You First Meet?",
-      answers: [
-        {
-          name: "Funbi",
-          text: "We met on LinkedIn in 2019. I invited him to a business meeting as a prospective client for the company I was working with at the time"
-        },
-        {
-          name: "Joseph",
-          text: "We met on LinkedIn as professionals for a business meeting."
-        }
-      ]
-    },
-    {
-      question: "Who Made The First Move?",
-      answers: [
-        {
-          name: "Funbi",
-          text: "Joseph made the first move, and all the other moves lol"
-        },
-        {
-          name: "Joseph",
-          text: "I Joseph Ogbaji, made the first move. Lol"
-        }
-      ]
-    },
-    {
-      question: "What Was Your First Impression Of Each Other?",
-      answers: [
-        {
-          name: "Funbi",
-          text: "He struck me as someone passionate about God. Na so business meeting turn to conversation about 'worship'"
-        },
-        {
-          name: "Joseph",
-          text: "My first impression about her, was how exciting she gets."
-        }
-      ]
-    },
-    {
-      question: "What's Your Favorite Thing About Each Other?",
-      answers: [
-        {
-          name: "Funbi",
-          text: "I cherish our friendship and deeply admire his commitment and passion for God, work and family."
-        },
-        {
-          name: "Joseph",
-          text: "Her personality is my favorite thing about her."
-        }
-      ]
-    },
-    {
-      question: "What's Something You Both Love Doing Together?",
-      answers: [
-        {
-          name: "Funbi",
-          text: "Sharing a meal together inside the car, parked in a quiet spot on a cool evening. Studying bible devotional together"
-        },
-        {
-          name: "Joseph",
-          text: "We love watching movies together and having conversation."
-        }
-      ]
-    },
-    {
-      question: "What's A Funny Or Awkward Moment You'll Never Forget?",
-      answers: [
-        {
-          name: "Funbi",
-          text: "When we saw each other again in 2022 (we only met twice in 2019 lol), Joseph was so excited he gave me a big hug and even lifted me off the ground! I was so confused because we weren't really close friends, and his excitement felt unexpected. It was an awkward, beautiful moment!"
-        },
-        {
-          name: "Joseph",
-          text: "The day I told her. I like you. 😂"
-        }
-      ]
-    },
-    {
-      question: "What Are Your Values?",
-      answers: [
-        {
-          name: "Funbi",
-          text: "Faith, Kindness, Service, Integrity"
-        },
-        {
-          name: "Joseph",
-          text: "Service"
-        }
-      ]
-    },
-    {
-      question: "How Has Your Faith Shaped Your Relationship?",
+      question: "How did you both meet?",
       answers: [
         {
           name: "Funbi & Joseph",
-          text: "Looking back, it's clear that faith was the invisible thread that brought us together. From the first spark of our friendship to the sacred moment we would say \"I do,\" faith was there—quietly guiding, gently nudging, and faithfully building something beautiful. There were moments we didn't even realize were landmarks small gestures, shared laughter, honest conversations. But each of those moments was a stepping stone, leading us toward each other. Faith wasn't just a part of our story, it was the author, writing every chapter with purpose and grace."
+          text: "We both met on LinkedIn. As we continued to chat we got each other's contact. Our conversations started around work and gradually extended to everything else. We would chat all day and call all night. We started hanging out after work and on weekends till we became inseparable."
         }
       ]
     },
     {
-      question: "When Did You Know He / She Was The One",
+      question: "Tell us about your first date",
       answers: [
+        {
+          name: "Funbi",
+          text: "We met at the cinema for 'A Wrinkle in Time'. I remember being so nervous but also excited. The movie was good, but I was more focused on getting to know him better. We had dinner afterwards and talked for hours about everything and nothing."
+        },
+        {
+          name: "Joseph",
+          text: "I was trying so hard to be cool and composed, but she had this way of making me feel completely at ease. By the end of the night, I knew there was something special about her. The way she laughed, her perspectives on life - everything just clicked."
+        }
+      ]
+    },
+    {
+      question: "When did you know this was 'the one'?",
+      answers: [
+        {
+          name: "Funbi",
+          text: "I think it was during one of our late-night calls when he was comforting me through a difficult time. The way he listened, understood, and supported me without judgment made me realize he was someone I could trust with my whole heart."
+        },
         {
           name: "Joseph",
           text: "I knew she was the one, when the witness in my heart became clear."
@@ -152,7 +61,7 @@ export default function OurStory() {
       alt: "Formal wear"
     },
     {
-      src: "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=500",
+      src: "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?ixlib=rb-4.0.3&ixid=MnwxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=500",
       alt: "Romantic moment"
     }
   ];
@@ -163,65 +72,6 @@ export default function OurStory() {
       <ConfettiBurst />
       
       <NavigationBar currentPage="our-story" showBackButton={true} />
-      
-      {/* Header */}
-      <header className="bg-rose-50/90 backdrop-blur-md py-6 sticky top-0 z-40">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between">
-            <Button
-              variant="ghost"
-              onClick={() => navigate("/")}
-              className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] flex items-center gap-2"
-            >
-              <ArrowLeft className="h-5 w-5" />
-              Back to Home
-            </Button>
-            
-            {/* Navigation */}
-            <nav className="hidden md:flex space-x-8">
-              <button 
-                onClick={() => navigate("/")}
-                className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
-              >
-                Home
-              </button>
-              <span className="text-[hsl(342,69%,29%)] font-serif font-medium border-b-2 border-[hsl(342,69%,29%)]">
-                Our Story
-              </span>
-              <button className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors">
-                Gallery
-              </button>
-            </nav>
-
-            <div className="hidden md:flex space-x-6">
-              <button className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors">
-                Registry
-              </button>
-              <button className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors">
-                Schedule
-              </button>
-              <button className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors">
-                RSVP
-              </button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)]"
-              onClick={() => setIsMobileMenuOpen(true)}
-            >
-              <Menu className="h-6 w-6" />
-            </Button>
-
-            {/* Logo/Monogram */}
-            <div className="w-12 h-12 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center">
-              <span className="text-white font-script text-xl font-bold">O&J</span>
-            </div>
-          </div>
-        </div>
-      </header>
 
       <div className="container mx-auto px-4 py-12">
         {/* Hero Section */}
@@ -311,7 +161,7 @@ export default function OurStory() {
           ))}
         </div>
 
-        {/* Bottom Action Button */}
+        {/* Closing Message */}
         <motion.div 
           className="text-center mt-16"
           initial={{ opacity: 0, y: 30 }}
@@ -319,35 +169,22 @@ export default function OurStory() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <Button 
-            onClick={() => navigate("/")}
-            className="bg-[hsl(342,69%,29%)] text-white px-12 py-4 rounded-full text-lg font-medium hover:bg-[hsl(342,60%,40%)] transition-colors shadow-lg"
-          >
-            Back to Wedding Details
-          </Button>
+          <Card className="p-8 bg-white/80 backdrop-blur-sm border-0 shadow-lg max-w-3xl mx-auto">
+            <div className="flex justify-center mb-6">
+              <div className="w-16 h-16 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center">
+                <Heart className="text-white text-2xl fill-current" />
+              </div>
+            </div>
+            <h3 className="text-3xl font-serif text-[hsl(342,69%,29%)] mb-6">
+              Our Journey Continues...
+            </h3>
+            <p className="text-lg text-gray-700 leading-relaxed">
+              What started as a simple LinkedIn connection has blossomed into the greatest love story of our lives. 
+              We're excited to begin this new chapter together and grateful to have you witness our union.
+            </p>
+          </Card>
         </motion.div>
-
-        {/* Bottom Banner */}
-        <div className="fixed bottom-0 left-0 right-0 bg-[hsl(342,69%,29%)] text-white py-3 text-center z-30">
-          <div className="flex justify-center items-center space-x-6 text-sm">
-            <button className="hover:text-[hsl(332,51%,70%)] transition-colors">Programme</button>
-            <span>|</span>
-            <button className="hover:text-[hsl(332,51%,70%)] transition-colors">Calendar</button>
-            <span>|</span>
-            <button className="hover:text-[hsl(332,51%,70%)] transition-colors">Get Direction</button>
-            <span>|</span>
-            <button className="hover:text-[hsl(332,51%,70%)] transition-colors">Check Table No.</button>
-          </div>
-        </div>
       </div>
-
-      {/* Mobile Menu */}
-      <MobileMenu
-        isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
-        navigationItems={navigationItems}
-        onNavigate={handleNavigation}
-      />
     </div>
   );
 }
