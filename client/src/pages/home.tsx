@@ -10,9 +10,12 @@ import ConfettiBackground from "@/components/confetti-background";
 import ConfettiBurst from "@/components/confetti-burst";
 import NavigationBar from "@/components/navigation-bar";
 import Footer from "@/components/footer";
+import ActionModal from "@/components/action-modal";
 
 export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isActionModalOpen, setIsActionModalOpen] = useState(false);
+  const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
   const [, navigate] = useLocation();
 
   const scrollToSection = (sectionId: string) => {
@@ -199,19 +202,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             {/* Profile Image */}
-            <motion.div 
-              className="text-center mb-12"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <img 
-                src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&h=300" 
-                alt="Beautiful wedding couple portrait" 
-                className="w-32 h-32 rounded-full mx-auto object-cover shadow-lg border-4 border-white" 
-              />
-            </motion.div>
+
 
             <motion.div 
               className="text-center mb-12"
@@ -232,46 +223,67 @@ export default function Home() {
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              {/* Left side - Couple photo with arched frame */}
               <motion.div 
-                className="space-y-6"
+                className="relative"
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
               >
-                <h3 className="text-3xl font-script text-[hsl(342,69%,29%)]">Olufunbi & Joseph</h3>
+                <div className="relative">
+                  {/* Arched frame with hearts */}
+                  <div className="relative w-80 h-96 mx-auto">
+                    {/* Main arched border - semi-circular top, straight sides, rounded bottom */}
+                    <div className="absolute inset-0 border-4 border-pink-200 rounded-t-[50%] rounded-b-lg"></div>
+                    
+                    {/* Heart decorations */}
+                    <div className="absolute -top-2 -right-2 text-[hsl(342,69%,29%)] text-2xl">❤️</div>
+                    <div className="absolute -bottom-2 -left-2 text-[hsl(342,69%,29%)] text-2xl">❤️</div>
+                    
+                    {/* Couple photo */}
+                    <div className="absolute inset-8 bg-amber-50 rounded-t-[40%] rounded-b-md overflow-hidden">
+                      <img 
+                        src={weddingPhotos[0].src}
+                        alt="Esther & Basil"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+              
+              {/* Right side - Text content */}
+              <motion.div 
+                className="space-y-6"
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                {/* Ring icon */}
+                <div className="text-[hsl(342,69%,29%)] text-2xl mb-4">💍</div>
+                
+                <h3 className="text-3xl font-script text-[hsl(342,69%,29%)]">Esther & Basil</h3>
                 <h4 className="text-xl font-serif text-gray-800">Two hearts. One divine journey.</h4>
                 <p className="text-gray-700 leading-relaxed">
-                  Joseph and Tireni are proof that when love is led by faith, it becomes something extraordinary. 
+                  Esther and Basil are proof that when love is led by faith, it becomes something extraordinary. 
                   From the moment their paths crossed, it was clear that God was writing a story bigger than either of them imagined.
                 </p>
                 <p className="text-gray-700 leading-relaxed">
                   Individually, they are driven, passionate, and full of purpose. Together, they are a reflection of grace, 
                   laughter, deep friendship, and unwavering love — partners in life, faith, and the beautiful future ahead.
                 </p>
+                
+                {/* Couple Story button */}
+                <div className="relative">
                 <Button 
-                  onClick={() => scrollToSection('schedule')}
-                  className="bg-[hsl(342,69%,29%)] text-white px-8 py-3 rounded-full font-medium hover:bg-[hsl(342,60%,40%)] transition-colors"
+                  onClick={() => window.location.href = '/our-story'}
+                  className="bg-[hsl(342,69%,29%)] text-white px-6 py-2 rounded-full font-medium hover:bg-[hsl(342,60%,40%)] transition-colors transform rotate-3"
                 >
-                  Read Our Story
+                  COUPLE STORY
                 </Button>
-              </motion.div>
-              
-              <motion.div 
-                className="grid grid-cols-2 gap-4"
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                {weddingPhotos.slice(3, 7).map((photo, index) => (
-                  <img 
-                    key={index}
-                    src={photo.src}
-                    alt={photo.alt}
-                    className="rounded-xl shadow-lg w-full h-40 object-cover hover:scale-105 transition-transform duration-300" 
-                  />
-                ))}
+                </div>
               </motion.div>
             </div>
           </div>
@@ -279,96 +291,146 @@ export default function Home() {
       </section>
 
       {/* Wedding Invitation Section */}
-      <section id="registry" className="py-20 bg-white">
+      <section id="registry" className="py-20 bg-white relative overflow-hidden">
+        {/* Background table setting */}
+        <div className="absolute inset-0">
+          <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=800')] bg-cover bg-center"></div>
+        </div>
+        
         <motion.div 
-          className="container mx-auto px-4 text-center"
+          className="container mx-auto px-4 relative z-10"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-5xl font-serif text-[hsl(342,69%,29%)] mb-8">
-            We want to share this precious moment with you
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[500px]">
+            {/* Left side - Text content */}
+            <div className="text-left">
+              <h2 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                <div>WE WANT TO</div>
+                <div>SHARE THIS</div>
+                <div>PRECIOUS</div>
+                <div>MOMENT WITH</div>
+                <div>YOU</div>
           </h2>
-          <p className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
+              <p className="text-xl text-white mb-8 max-w-lg leading-relaxed">
             Join us as we say "I do" and begin this beautiful new chapter together. 
             We can't wait for you to celebrate with us on August 2nd, 2025!
           </p>
+            </div>
+            
+            {/* Right side - Circular button */}
+            <div className="flex justify-center lg:justify-end">
           <Button 
             onClick={() => scrollToSection('schedule')}
-            className="bg-[hsl(332,51%,70%)] text-white px-12 py-4 rounded-full text-lg font-medium hover:bg-[hsl(332,60%,50%)] transition-colors shadow-lg"
+                className="w-32 h-32 rounded-full bg-[hsl(342,69%,29%)] text-white text-lg font-bold hover:bg-[hsl(342,60%,40%)] transition-colors shadow-xl flex items-center justify-center"
           >
-            Wedding Info
+                WEDDING<br />INFO
           </Button>
+            </div>
+          </div>
         </motion.div>
       </section>
 
       {/* Additional Photo Gallery */}
-      <section id="schedule" className="py-16 bg-rose-50">
+      <section id="schedule" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <motion.div 
-            className="grid grid-cols-2 md:grid-cols-5 gap-4"
+            className="flex justify-center items-center space-x-6 md:space-x-8 lg:space-x-12"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="col-span-2 row-span-2">
+            {/* First image - smaller */}
+            <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full border-2 border-pink-200 overflow-hidden shadow-lg">
+              <img 
+                src={weddingPhotos[0].src}
+                alt={weddingPhotos[0].alt}
+                className="w-full h-full object-cover" 
+              />
+            </div>
+            
+            {/* Second image - smaller */}
+            <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full border-2 border-pink-200 overflow-hidden shadow-lg">
+              <img 
+                src={weddingPhotos[1].src}
+                alt={weddingPhotos[1].alt}
+                className="w-full h-full object-cover" 
+              />
+            </div>
+            
+            {/* Middle image - larger and centered */}
+            <div className="w-28 h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 rounded-full border-3 border-pink-200 overflow-hidden shadow-xl">
               <img 
                 src={weddingPhotos[2].src}
                 alt={weddingPhotos[2].alt}
-                className="w-full h-full object-cover rounded-xl shadow-lg hover:scale-105 transition-transform duration-300" 
+                className="w-full h-full object-cover" 
               />
             </div>
-            {weddingPhotos.slice(0, 3).map((photo, index) => (
+            
+            {/* Fourth image - smaller */}
+            <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full border-2 border-pink-200 overflow-hidden shadow-lg">
               <img 
-                key={index}
-                src={photo.src}
-                alt={photo.alt}
-                className="w-full h-32 md:h-40 object-cover rounded-xl shadow-lg hover:scale-105 transition-transform duration-300" 
+                src={weddingPhotos[3].src}
+                alt={weddingPhotos[3].alt}
+                className="w-full h-full object-cover" 
               />
-            ))}
+        </div>
+            
+            {/* Fifth image - smaller */}
+            <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full border-2 border-pink-200 overflow-hidden shadow-lg">
+              <img 
+                src={weddingPhotos[4].src}
+                alt={weddingPhotos[4].alt}
+                className="w-full h-full object-cover" 
+              />
+            </div>
           </motion.div>
         </div>
       </section>
 
-      <Footer />
-
-      {/* Bottom Action Bar */}
-      <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-[hsl(342,69%,29%)] text-white py-3 px-6 rounded-full shadow-lg z-30">
-        <div className="flex justify-center space-x-2 text-sm">
-          <button 
-            onClick={() => scrollToSection('schedule')}
-            className="hover:text-[hsl(332,51%,70%)] transition-colors"
-          >
-            Programme
-          </button>
-          <span className="text-[hsl(332,51%,70%)]">|</span>
-          <button 
-            onClick={() => scrollToSection('schedule')}
-            className="hover:text-[hsl(332,51%,70%)] transition-colors"
-          >
-            Calendar
-          </button>
-          <span className="text-[hsl(332,51%,70%)]">|</span>
-          <button 
-            onClick={() => scrollToSection('rsvp')}
-            className="hover:text-[hsl(332,51%,70%)] transition-colors"
-          >
-            Get Direction
-          </button>
-          <span className="text-[hsl(332,51%,70%)]">|</span>
-          <button 
-            onClick={() => scrollToSection('rsvp')}
-            className="hover:text-[hsl(332,51%,70%)] transition-colors"
-          >
-            Check Table No.
-          </button>
+      {/* Bottom Action Bar with Modal */}
+      <div 
+        className="fixed bottom-4 md:bottom-8 lg:bottom-20 left-1/2 transform -translate-x-1/2 z-30 w-full px-4"
+        onMouseEnter={() => {
+          if (hoverTimeout) clearTimeout(hoverTimeout);
+          setIsActionModalOpen(true);
+        }}
+        onMouseLeave={() => {
+          const timeout = setTimeout(() => setIsActionModalOpen(false), 300);
+          setHoverTimeout(timeout);
+        }}
+      >
+        {/* Action Bar */}
+        <div className="bg-[hsl(342,69%,29%)] text-white py-2 md:py-3 px-4 md:px-6 rounded-full shadow-lg cursor-pointer max-w-md mx-auto">
+          <div className="flex justify-center space-x-1 md:space-x-2 text-xs md:text-sm">
+            <span className="hidden sm:inline">Programme</span>
+            <span className="sm:hidden">Prog</span>
+            <span className="text-[hsl(332,51%,70%)]">|</span>
+            <span className="hidden sm:inline">Calendar</span>
+            <span className="sm:hidden">Cal</span>
+            <span className="text-[hsl(332,51%,70%)]">|</span>
+            <span className="hidden md:inline">Get Direction</span>
+            <span className="sm:inline md:hidden">Direction</span>
+            <span className="text-[hsl(332,51%,70%)]">|</span>
+            <span className="hidden lg:inline">Check Table No.</span>
+            <span className="sm:inline lg:hidden">Table</span>
+          </div>
         </div>
+
+        {/* Modal */}
+        <ActionModal 
+          isOpen={isActionModalOpen} 
+          onClose={() => {
+            if (hoverTimeout) clearTimeout(hoverTimeout);
+            setIsActionModalOpen(false);
+          }}
+        />
       </div>
 
-      {/* Padding for bottom bar */}
-      <div className="h-16"></div>
+      <Footer />
     </div>
   );
 }

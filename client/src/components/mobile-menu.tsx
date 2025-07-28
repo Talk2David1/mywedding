@@ -47,7 +47,7 @@ export default function MobileMenu({ isOpen, onClose, navigationItems, onNavigat
               }}
             />
             
-            <div className="relative h-full flex flex-col justify-center items-end pr-8 space-y-8 text-[hsl(342,69%,29%)]">
+            <div className="relative h-full flex flex-col justify-center items-end pr-8 space-y-4 text-[hsl(342,69%,29%)]">
               <Button
                 variant="ghost"
                 size="icon"
@@ -57,7 +57,7 @@ export default function MobileMenu({ isOpen, onClose, navigationItems, onNavigat
                 <X className="h-8 w-8" />
               </Button>
               
-              <nav className="text-right space-y-6">
+              <nav className="text-right space-y-3">
                 {navigationItems.map((item, index) => (
                   <motion.button
                     key={item.href}

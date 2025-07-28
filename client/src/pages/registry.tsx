@@ -94,20 +94,20 @@ export default function Registry() {
               {/* Account 1 */}
               <div className="bg-gradient-to-br from-rose-100 to-pink-100 p-6 rounded-lg">
                 <h3 className="text-xl font-serif text-[hsl(342,69%,29%)] mb-4 text-center">
-                  Olufunbi's Account
+                  Esther's Account
                 </h3>
                 <div className="space-y-3">
                   <div className="bg-white/80 p-3 rounded flex justify-between items-center">
                     <span className="text-sm text-gray-600">Account Name:</span>
                     <div className="flex items-center gap-2">
-                      <span className="font-medium">Olufunbi Adeboyejo</span>
+                      <span className="font-medium">Esther Adeboyejo</span>
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => copyToClipboard("Olufunbi Adeboyejo", "funbi-name")}
+                        onClick={() => copyToClipboard("Esther Adeboyejo", "esther-name")}
                         className="p-1 h-6 w-6"
                       >
-                        {copiedField === "funbi-name" ? (
+                        {copiedField === "esther-name" ? (
                           <Check className="h-3 w-3 text-green-600" />
                         ) : (
                           <Copy className="h-3 w-3" />
@@ -122,10 +122,10 @@ export default function Registry() {
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => copyToClipboard("2206728391", "funbi-number")}
+                        onClick={() => copyToClipboard("2206728391", "esther-number")}
                         className="p-1 h-6 w-6"
                       >
-                        {copiedField === "funbi-number" ? (
+                        {copiedField === "esther-number" ? (
                           <Check className="h-3 w-3 text-green-600" />
                         ) : (
                           <Copy className="h-3 w-3" />
@@ -140,10 +140,10 @@ export default function Registry() {
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => copyToClipboard("UBA", "funbi-bank")}
+                        onClick={() => copyToClipboard("UBA", "esther-bank")}
                         className="p-1 h-6 w-6"
                       >
-                        {copiedField === "funbi-bank" ? (
+                        {copiedField === "esther-bank" ? (
                           <Check className="h-3 w-3 text-green-600" />
                         ) : (
                           <Copy className="h-3 w-3" />
@@ -157,20 +157,20 @@ export default function Registry() {
               {/* Account 2 */}
               <div className="bg-gradient-to-br from-rose-100 to-pink-100 p-6 rounded-lg">
                 <h3 className="text-xl font-serif text-[hsl(342,69%,29%)] mb-4 text-center">
-                  Joseph's Account
+                  Basil's Account
                 </h3>
                 <div className="space-y-3">
                   <div className="bg-white/80 p-3 rounded flex justify-between items-center">
                     <span className="text-sm text-gray-600">Account Name:</span>
                     <div className="flex items-center gap-2">
-                      <span className="font-medium">Joseph Ayodele</span>
+                      <span className="font-medium">Basil Ayodele</span>
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => copyToClipboard("Joseph Ayodele", "joseph-name")}
+                        onClick={() => copyToClipboard("Basil Ayodele", "basil-name")}
                         className="p-1 h-6 w-6"
                       >
-                        {copiedField === "joseph-name" ? (
+                        {copiedField === "basil-name" ? (
                           <Check className="h-3 w-3 text-green-600" />
                         ) : (
                           <Copy className="h-3 w-3" />
@@ -185,10 +185,10 @@ export default function Registry() {
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => copyToClipboard("0775569088", "joseph-number")}
+                        onClick={() => copyToClipboard("0775569088", "basil-number")}
                         className="p-1 h-6 w-6"
                       >
-                        {copiedField === "joseph-number" ? (
+                        {copiedField === "basil-number" ? (
                           <Check className="h-3 w-3 text-green-600" />
                         ) : (
                           <Copy className="h-3 w-3" />
@@ -203,10 +203,10 @@ export default function Registry() {
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => copyToClipboard("GT Bank", "joseph-bank")}
+                        onClick={() => copyToClipboard("GT Bank", "basil-bank")}
                         className="p-1 h-6 w-6"
                       >
-                        {copiedField === "joseph-bank" ? (
+                        {copiedField === "basil-bank" ? (
                           <Check className="h-3 w-3 text-green-600" />
                         ) : (
                           <Copy className="h-3 w-3" />

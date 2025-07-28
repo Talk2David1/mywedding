@@ -77,7 +77,7 @@ export default function NavigationBar({ currentPage, showBackButton = false }: N
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-16 h-16 rounded-full border-2 border-[hsl(332,51%,70%)] flex items-center justify-center">
                     <div className="w-12 h-12 rounded-full border border-[hsl(332,51%,70%)] flex items-center justify-center">
-                      <span className="text-[hsl(342,69%,29%)] font-script text-2xl font-bold">O&J</span>
+                      <span className="text-[hsl(342,69%,29%)] font-script text-2xl font-bold">E&B</span>
                     </div>
                   </div>
                 </div>
@@ -87,7 +87,6 @@ export default function NavigationBar({ currentPage, showBackButton = false }: N
                 <div className="absolute -bottom-1 -left-1 text-[hsl(332,51%,70%)] text-xs">🌸</div>
                 <div className="absolute -bottom-1 -right-1 text-[hsl(332,51%,70%)] text-xs">🌸</div>
               </div>
-              <div className="text-[hsl(342,69%,29%)] font-sans text-sm mt-2">Olufunbi & Joseph</div>
             </div>
 
             {/* Right Navigation Items */}

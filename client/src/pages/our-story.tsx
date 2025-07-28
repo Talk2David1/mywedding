@@ -15,7 +15,7 @@ export default function OurStory() {
       question: "How did you both meet?",
       answers: [
         {
-          name: "Funbi & Joseph",
+          name: "Esther & Basil",
           text: "We both met on LinkedIn. As we continued to chat we got each other's contact. Our conversations started around work and gradually extended to everything else. We would chat all day and call all night. We started hanging out after work and on weekends till we became inseparable."
         }
       ]
@@ -24,11 +24,11 @@ export default function OurStory() {
       question: "Tell us about your first date",
       answers: [
         {
-          name: "Funbi",
+          name: "Esther",
           text: "We met at the cinema for 'A Wrinkle in Time'. I remember being so nervous but also excited. The movie was good, but I was more focused on getting to know him better. We had dinner afterwards and talked for hours about everything and nothing."
         },
         {
-          name: "Joseph",
+          name: "Basil",
           text: "I was trying so hard to be cool and composed, but she had this way of making me feel completely at ease. By the end of the night, I knew there was something special about her. The way she laughed, her perspectives on life - everything just clicked."
         }
       ]
@@ -37,11 +37,11 @@ export default function OurStory() {
       question: "When did you know this was 'the one'?",
       answers: [
         {
-          name: "Funbi",
+          name: "Esther",
           text: "I think it was during one of our late-night calls when he was comforting me through a difficult time. The way he listened, understood, and supported me without judgment made me realize he was someone I could trust with my whole heart."
         },
         {
-          name: "Joseph",
+          name: "Basil",
           text: "I knew she was the one, when the witness in my heart became clear."
         }
       ]
@@ -144,7 +144,7 @@ export default function OurStory() {
                       <div className="flex items-center gap-3 mb-3">
                         <div className="w-8 h-8 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center">
                           <span className="text-white font-script text-sm font-bold">
-                            {answer.name === "Funbi" ? "F" : answer.name === "Joseph" ? "J" : "F&J"}
+                            {answer.name === "Esther" ? "E" : answer.name === "Basil" ? "B" : "E&B"}
                           </span>
                         </div>
                         <span className="font-serif font-semibold text-[hsl(342,69%,29%)] text-lg">
