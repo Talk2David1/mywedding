@@ -36,18 +36,13 @@ export default function NavigationBar({ currentPage, showBackButton = false }: N
       <header className="bg-rose-50/90 backdrop-blur-md py-6 sticky top-0 z-40">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
-            {/* Logo/Monogram - Left */}
-            <div className="w-12 h-12 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center">
-              <span className="text-white font-script text-xl font-bold">O&J</span>
-            </div>
-
-            {/* Desktop Navigation - Center */}
+            {/* Left Navigation Items */}
             <nav className="hidden lg:flex space-x-8">
               <button 
                 onClick={() => navigate("/")}
-                className={`font-serif font-medium transition-colors ${
+                className={`font-script font-medium transition-colors ${
                   isCurrentPage("home") 
-                    ? "text-[hsl(342,69%,29%)] border-b-2 border-[hsl(342,69%,29%)]"
+                    ? "text-[hsl(342,69%,29%)] border border-[hsl(342,69%,29%)] px-3 py-1 rounded"
                     : "text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)]"
                 }`}
               >
@@ -55,9 +50,9 @@ export default function NavigationBar({ currentPage, showBackButton = false }: N
               </button>
               <button 
                 onClick={() => navigate("/our-story")}
-                className={`font-serif font-medium transition-colors ${
+                className={`font-script font-medium transition-colors ${
                   isCurrentPage("our-story") 
-                    ? "text-[hsl(342,69%,29%)] border-b-2 border-[hsl(342,69%,29%)]"
+                    ? "text-[hsl(342,69%,29%)] border border-[hsl(342,69%,29%)] px-3 py-1 rounded"
                     : "text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)]"
                 }`}
               >
@@ -65,9 +60,9 @@ export default function NavigationBar({ currentPage, showBackButton = false }: N
               </button>
               <button 
                 onClick={() => navigate("/gallery")}
-                className={`font-serif font-medium transition-colors ${
+                className={`font-script font-medium transition-colors ${
                   isCurrentPage("gallery") 
-                    ? "text-[hsl(342,69%,29%)] border-b-2 border-[hsl(342,69%,29%)]"
+                    ? "text-[hsl(342,69%,29%)] border border-[hsl(342,69%,29%)] px-3 py-1 rounded"
                     : "text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)]"
                 }`}
               >
@@ -75,15 +70,34 @@ export default function NavigationBar({ currentPage, showBackButton = false }: N
               </button>
             </nav>
 
-            {/* Right side - Desktop Navigation and Mobile Menu */}
+            {/* Center Logo */}
+            <div className="flex flex-col items-center">
+              <div className="relative">
+                {/* Floral wreath background */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full border-2 border-[hsl(332,51%,70%)] flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full border border-[hsl(332,51%,70%)] flex items-center justify-center">
+                      <span className="text-[hsl(342,69%,29%)] font-script text-2xl font-bold">O&J</span>
+                    </div>
+                  </div>
+                </div>
+                {/* Decorative flowers around the logo */}
+                <div className="absolute -top-1 -left-1 text-[hsl(332,51%,70%)] text-xs">🌸</div>
+                <div className="absolute -top-1 -right-1 text-[hsl(332,51%,70%)] text-xs">🌸</div>
+                <div className="absolute -bottom-1 -left-1 text-[hsl(332,51%,70%)] text-xs">🌸</div>
+                <div className="absolute -bottom-1 -right-1 text-[hsl(332,51%,70%)] text-xs">🌸</div>
+              </div>
+              <div className="text-[hsl(342,69%,29%)] font-sans text-sm mt-2">Olufunbi & Joseph</div>
+            </div>
+
+            {/* Right Navigation Items */}
             <div className="flex items-center space-x-6">
-              {/* Desktop Navigation */}
-              <div className="hidden lg:flex space-x-6">
+              <nav className="hidden lg:flex space-x-8">
                 <button 
                   onClick={() => navigate("/registry")}
-                  className={`font-serif font-medium transition-colors ${
+                  className={`font-script font-medium transition-colors ${
                     isCurrentPage("registry") 
-                      ? "text-[hsl(342,69%,29%)] border-b-2 border-[hsl(342,69%,29%)]"
+                      ? "text-[hsl(342,69%,29%)] border border-[hsl(342,69%,29%)] px-3 py-1 rounded"
                       : "text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)]"
                   }`}
                 >
@@ -91,9 +105,9 @@ export default function NavigationBar({ currentPage, showBackButton = false }: N
                 </button>
                 <button 
                   onClick={() => navigate("/schedule")}
-                  className={`font-serif font-medium transition-colors ${
+                  className={`font-script font-medium transition-colors ${
                     isCurrentPage("schedule") 
-                      ? "text-[hsl(342,69%,29%)] border-b-2 border-[hsl(342,69%,29%)]"
+                      ? "text-[hsl(342,69%,29%)] border border-[hsl(342,69%,29%)] px-3 py-1 rounded"
                       : "text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)]"
                   }`}
                 >
@@ -101,13 +115,17 @@ export default function NavigationBar({ currentPage, showBackButton = false }: N
                 </button>
                 <button 
                   onClick={() => navigate("/schedule#rsvp")}
-                  className="text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)] font-serif font-medium transition-colors"
+                  className={`font-script font-medium transition-colors ${
+                    isCurrentPage("rsvp") 
+                      ? "text-[hsl(342,69%,29%)] border border-[hsl(342,69%,29%)] px-3 py-1 rounded"
+                      : "text-[hsl(342,69%,29%)] hover:text-[hsl(342,60%,40%)]"
+                  }`}
                 >
                   RSVP
                 </button>
-              </div>
+              </nav>
 
-              {/* Mobile Menu Button - Always on the right */}
+              {/* Mobile Menu Button */}
               <Button
                 variant="ghost"
                 size="icon"
@@ -119,6 +137,9 @@ export default function NavigationBar({ currentPage, showBackButton = false }: N
             </div>
           </div>
         </div>
+        
+        {/* Decorative line below navigation */}
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-[hsl(342,69%,29%)] to-transparent mt-4"></div>
       </header>
 
       {/* Mobile Menu */}

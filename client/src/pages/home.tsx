@@ -9,6 +9,7 @@ import CountdownTimer from "@/components/countdown-timer";
 import ConfettiBackground from "@/components/confetti-background";
 import ConfettiBurst from "@/components/confetti-burst";
 import NavigationBar from "@/components/navigation-bar";
+import Footer from "@/components/footer";
 
 export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -86,7 +87,7 @@ export default function Home() {
       <NavigationBar currentPage="home" />
 
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20 relative">
+      <section id="home" className="min-h-screen flex flex-col justify-start items-center text-center px-4 pt-42 relative">
         {/* Floating hearts decoration */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div 
@@ -114,7 +115,7 @@ export default function Home() {
 
         {/* Countdown Timer */}
         <motion.div 
-          className="mb-8"
+          className="mb-6"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
@@ -122,37 +123,36 @@ export default function Home() {
           <CountdownTimer targetDate="2025-08-02T00:00:00" />
         </motion.div>
 
+        {/* Heart Icon */}
+        <motion.div 
+          className="flex justify-center mb-6"
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <div className="w-8 h-8 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center border-2 border-[hsl(332,51%,70%)]">
+            <Heart className="text-white text-sm fill-current" />
+          </div>
+        </motion.div>
+
         {/* Main Heading */}
         <motion.div 
           className="max-w-4xl mx-auto mb-8"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
+          transition={{ duration: 1, delay: 0.6 }}
         >
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif mb-4">
-            <span className="text-[hsl(332,51%,70%)]">CELEBRATE</span>
-            <span className="text-[hsl(342,69%,29%)]"> LOVE</span><span className="text-[hsl(332,51%,70%)]">,</span>
+          <h1 className="text-3xl md:text-5xl lg:text-5xl font-serif mb-6 leading-tight">
+            <span className="text-[hsl(332,51%,70%)]">CELEBRATE LOVE,</span>
+            <span className="text-[hsl(342,69%,29%)]"> CELEBRATE</span>
             <br />
-            <span className="text-[hsl(342,69%,29%)]">CELEBRATE LIFE</span>
-            <br />
+            <span className="text-[hsl(342,69%,29%)]">LIFE </span> 
             <span className="text-[hsl(332,51%,70%)]">WITH GRATITUDE</span>
           </h1>
           
           {/* Couple Names */}
-          <div className="text-6xl md:text-8xl font-script text-[hsl(342,69%,29%)] mt-8">
-            Olufunbi <span className="text-[hsl(332,51%,70%)]">&</span> Joseph
-          </div>
-        </motion.div>
-
-        {/* Decorative Heart */}
-        <motion.div 
-          className="flex justify-center mb-8"
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-        >
-          <div className="w-12 h-12 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center">
-            <Heart className="text-white text-xl fill-current" />
+          <div className="text-4xl md:text-5xl font-script text-[hsl(342,69%,29%)] mt-8">
+            Esther & Basil
           </div>
         </motion.div>
       </section>
@@ -161,19 +161,20 @@ export default function Home() {
       <div className="stripe-pattern w-full"></div>
 
       {/* Photo Gallery Section */}
-      <section id="gallery" className="py-16 bg-white">
+      <section id="gallery" className="py-16 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            className="flex space-x-6 animate-scroll"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            {weddingPhotos.slice(0, 3).map((photo, index) => (
+            {/* Duplicate photos for infinite scroll effect */}
+            {[...weddingPhotos, ...weddingPhotos].map((photo, index) => (
               <motion.div 
                 key={index}
-                className="group overflow-hidden rounded-xl shadow-lg"
+                className="group flex-shrink-0 w-80 h-96 overflow-hidden rounded-xl shadow-lg"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -182,13 +183,16 @@ export default function Home() {
                 <img 
                   src={photo.src}
                   alt={photo.alt}
-                  className="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-500" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                 />
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
+
+      {/* Stripe Decoration */}
+      <div className="stripe-pattern w-full"></div>
 
       {/* Our Story Section */}
       <section id="our-story" className="py-20 bg-rose-50">
@@ -328,55 +332,38 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Social Hashtag Section */}
-      <section id="rsvp" className="py-12 bg-[hsl(342,69%,29%)] text-white overflow-hidden">
-        <div className="relative">
-          <motion.div 
-            className="flex space-x-8 whitespace-nowrap text-2xl font-script"
-            animate={{ x: [0, -100] }}
-            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-          >
-            {Array.from({ length: 20 }, (_, i) => (
-              <span key={i} className="inline-block">
-                ● Love like this ● #lovelikethis ● #FJO2025 ●
-              </span>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+      <Footer />
 
       {/* Bottom Action Bar */}
-      <div className="fixed bottom-0 left-0 right-0 bg-[hsl(342,69%,29%)] text-white py-3 z-30">
-        <div className="container mx-auto px-4 text-center">
-          <div className="flex justify-center space-x-2 text-sm md:text-base">
-            <button 
-              onClick={() => scrollToSection('schedule')}
-              className="hover:text-[hsl(332,51%,70%)] transition-colors"
-            >
-              Programme
-            </button>
-            <span className="text-[hsl(332,51%,70%)]">|</span>
-            <button 
-              onClick={() => scrollToSection('schedule')}
-              className="hover:text-[hsl(332,51%,70%)] transition-colors"
-            >
-              Calendar
-            </button>
-            <span className="text-[hsl(332,51%,70%)]">|</span>
-            <button 
-              onClick={() => scrollToSection('rsvp')}
-              className="hover:text-[hsl(332,51%,70%)] transition-colors"
-            >
-              Get Direction
-            </button>
-            <span className="text-[hsl(332,51%,70%)]">|</span>
-            <button 
-              onClick={() => scrollToSection('rsvp')}
-              className="hover:text-[hsl(332,51%,70%)] transition-colors"
-            >
-              Check Table No.
-            </button>
-          </div>
+      <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-[hsl(342,69%,29%)] text-white py-3 px-6 rounded-full shadow-lg z-30">
+        <div className="flex justify-center space-x-2 text-sm">
+          <button 
+            onClick={() => scrollToSection('schedule')}
+            className="hover:text-[hsl(332,51%,70%)] transition-colors"
+          >
+            Programme
+          </button>
+          <span className="text-[hsl(332,51%,70%)]">|</span>
+          <button 
+            onClick={() => scrollToSection('schedule')}
+            className="hover:text-[hsl(332,51%,70%)] transition-colors"
+          >
+            Calendar
+          </button>
+          <span className="text-[hsl(332,51%,70%)]">|</span>
+          <button 
+            onClick={() => scrollToSection('rsvp')}
+            className="hover:text-[hsl(332,51%,70%)] transition-colors"
+          >
+            Get Direction
+          </button>
+          <span className="text-[hsl(332,51%,70%)]">|</span>
+          <button 
+            onClick={() => scrollToSection('rsvp')}
+            className="hover:text-[hsl(332,51%,70%)] transition-colors"
+          >
+            Check Table No.
+          </button>
         </div>
       </div>
 

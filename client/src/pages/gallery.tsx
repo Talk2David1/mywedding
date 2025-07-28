@@ -6,6 +6,7 @@ import { useState } from "react";
 import ConfettiBackground from "@/components/confetti-background";
 import ConfettiBurst from "@/components/confetti-burst";
 import NavigationBar from "@/components/navigation-bar";
+import Footer from "@/components/footer";
 
 export default function Gallery() {
   const galleryPhotos = [
@@ -151,6 +152,8 @@ export default function Gallery() {
           </p>
         </motion.div>
       </div>
+      
+      <Footer />
     </div>
   );
 }

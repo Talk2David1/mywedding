@@ -8,6 +8,7 @@ import CountdownTimer from "@/components/countdown-timer";
 import ConfettiBackground from "@/components/confetti-background";
 import ConfettiBurst from "@/components/confetti-burst";
 import NavigationBar from "@/components/navigation-bar";
+import Footer from "@/components/footer";
 
 export default function Schedule() {
   const [rsvpForm, setRsvpForm] = useState({
@@ -237,6 +238,8 @@ export default function Schedule() {
           </motion.div>
         </section>
       </div>
+      
+      <Footer />
     </div>
   );
 }

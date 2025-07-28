@@ -46,25 +46,31 @@ export default function ConfettiBackground() {
           key={particle.id}
           className="absolute rounded-full"
           style={{
-            left: `${particle.x}%`,
+            left: '50%',
+            top: '50%',
+            transform: 'translate(-50%, -50%)',
             backgroundColor: particle.color,
             width: particle.size,
             height: particle.size
           }}
           initial={{ 
-            y: -100, 
+            x: 0,
+            y: 0, 
             rotate: 0,
-            opacity: 1 
+            opacity: 1,
+            scale: 0
           }}
           animate={{ 
-            y: window.innerHeight + 100, 
+            x: (Math.random() - 0.5) * window.innerWidth * 2,
+            y: (Math.random() - 0.5) * window.innerHeight * 2, 
             rotate: 720,
-            opacity: 0 
+            opacity: 0,
+            scale: 1
           }}
           transition={{
             duration: particle.duration,
             delay: particle.delay,
-            ease: "easeInOut"
+            ease: "easeOut"
           }}
         />
       ))}

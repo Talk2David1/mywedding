@@ -32,17 +32,17 @@ export default function ConfettiBurst() {
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 3;
 
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 100; i++) {
       pieces.push({
         id: i,
-        x: centerX + (Math.random() - 0.5) * 200,
-        y: centerY + (Math.random() - 0.5) * 100,
+        x: centerX + (Math.random() - 0.5) * 400,
+        y: centerY + (Math.random() - 0.5) * 150,
         color: colors[Math.floor(Math.random() * colors.length)],
-        size: Math.random() * 8 + 4,
+        size: Math.random() * 12 + 6,
         rotation: Math.random() * 360,
         velocity: {
-          x: (Math.random() - 0.5) * 400,
-          y: Math.random() * -300 - 100,
+          x: (Math.random() - 0.5) * 600,
+          y: Math.random() * -400 - 150,
         },
       });
     }

@@ -48,7 +48,7 @@ export default function CountdownTimer({ targetDate }: CountdownTimerProps) {
   ];
 
   return (
-    <div className="flex justify-center space-x-6 text-[hsl(342,69%,29%)]">
+    <div className="flex justify-center space-x-8 text-[hsl(342,69%,29%)]">
       {timeUnits.map((unit, index) => (
         <motion.div 
           key={unit.label}
@@ -58,7 +58,7 @@ export default function CountdownTimer({ targetDate }: CountdownTimerProps) {
           transition={{ duration: 0.5, delay: index * 0.1 }}
         >
           <motion.div 
-            className="text-4xl md:text-6xl font-bold"
+            className="text-5xl md:text-7xl font-serif font-bold"
             key={unit.value} // Re-animate when value changes
             initial={{ scale: 1.2 }}
             animate={{ scale: 1 }}
@@ -66,7 +66,7 @@ export default function CountdownTimer({ targetDate }: CountdownTimerProps) {
           >
             {String(unit.value).padStart(2, '0')}
           </motion.div>
-          <div className="text-sm md:text-base font-medium">{unit.label}</div>
+          <div className="text-xs md:text-sm font-serif font-medium mt-1">{unit.label}</div>
         </motion.div>
       ))}
     </div>
