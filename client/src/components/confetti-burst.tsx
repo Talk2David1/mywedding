@@ -1,93 +1,93 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-
-interface ConfettiPiece {
-  id: number;
-  x: number;
-  y: number;
-  color: string;
-  size: number;
-  rotation: number;
-  velocity: {
-    x: number;
-    y: number;
-  };
-}
+import { useEffect } from "react";
+import confetti from "canvas-confetti";
 
 export default function ConfettiBurst() {
-  const [confetti, setConfetti] = useState<ConfettiPiece[]>([]);
-  const [isActive, setIsActive] = useState(true);
-
-  const colors = [
-    "hsl(342, 69%, 29%)", // burgundy
-    "hsl(332, 51%, 70%)", // rose
-    "hsl(350, 100%, 88%)", // light pink
-    "hsl(0, 0%, 100%)", // white
-    "hsl(45, 100%, 85%)", // light gold
-  ];
-
   useEffect(() => {
-    // Create initial burst of confetti
-    const pieces: ConfettiPiece[] = [];
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 3;
-
-    for (let i = 0; i < 100; i++) {
-      pieces.push({
-        id: i,
-        x: centerX + (Math.random() - 0.5) * 400,
-        y: centerY + (Math.random() - 0.5) * 150,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        size: Math.random() * 12 + 6,
-        rotation: Math.random() * 360,
-        velocity: {
-          x: (Math.random() - 0.5) * 600,
-          y: Math.random() * -400 - 150,
-        },
+    // Create a colorful confetti burst
+    const fireConfetti = () => {
+      // Multiple bursts for a more dramatic effect
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: [
+          '#f472b6', // pink
+          '#ec4899', // rose
+          '#db2777', // magenta
+          '#be185d', // dark pink
+          '#fbbf24', // amber
+          '#f59e0b', // orange
+          '#10b981', // emerald
+          '#059669', // green
+          '#3b82f6', // blue
+          '#1d4ed8', // dark blue
+          '#8b5cf6', // violet
+          '#7c3aed', // purple
+          '#ef4444', // red
+          '#dc2626', // dark red
+          '#ffffff', // white
+        ],
+        shapes: ['circle', 'square'],
+        gravity: 0.8,
+        ticks: 200,
+        startVelocity: 30,
+        decay: 0.95,
       });
-    }
 
-    setConfetti(pieces);
+      // Second burst with different timing
+      setTimeout(() => {
+        confetti({
+          particleCount: 50,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+          colors: [
+            '#f472b6', '#ec4899', '#db2777', '#be185d', '#fbbf24',
+            '#f59e0b', '#10b981', '#059669', '#3b82f6', '#1d4ed8',
+            '#8b5cf6', '#7c3aed', '#ef4444', '#dc2626', '#ffffff',
+          ],
+        });
+      }, 250);
 
-    // Remove confetti after animation
-    const timer = setTimeout(() => {
-      setIsActive(false);
+      // Third burst from the right side
+      setTimeout(() => {
+        confetti({
+          particleCount: 50,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+          colors: [
+            '#f472b6', '#ec4899', '#db2777', '#be185d', '#fbbf24',
+            '#f59e0b', '#10b981', '#059669', '#3b82f6', '#1d4ed8',
+            '#8b5cf6', '#7c3aed', '#ef4444', '#dc2626', '#ffffff',
+          ],
+        });
+      }, 400);
+    };
+
+    // Fire confetti 2 times with delays
+    fireConfetti(); // First burst immediately
+    
+    // Second burst after 3 seconds
+    setTimeout(() => {
+      fireConfetti();
     }, 3000);
 
-    return () => clearTimeout(timer);
+    // Optional: Fire confetti on window focus (for when user returns to tab)
+    const handleFocus = () => {
+      // Only fire if it's been more than 5 seconds since page load
+      if (Date.now() - performance.timing.navigationStart > 5000) {
+        fireConfetti();
+      }
+    };
+
+    window.addEventListener('focus', handleFocus);
+
+    return () => {
+      window.removeEventListener('focus', handleFocus);
+    };
   }, []);
 
-  if (!isActive) return null;
-
-  return (
-    <div className="fixed inset-0 pointer-events-none z-50">
-      {confetti.map((piece) => (
-        <motion.div
-          key={piece.id}
-          className="absolute rounded-full"
-          style={{
-            backgroundColor: piece.color,
-            width: piece.size,
-            height: piece.size,
-          }}
-          initial={{
-            x: piece.x,
-            y: piece.y,
-            rotate: piece.rotation,
-            opacity: 1,
-          }}
-          animate={{
-            x: piece.x + piece.velocity.x,
-            y: piece.y + piece.velocity.y + 500,
-            rotate: piece.rotation + 360,
-            opacity: 0,
-          }}
-          transition={{
-            duration: 3,
-            ease: "easeOut",
-          }}
-        />
-      ))}
-    </div>
-  );
+  // This component doesn't render anything visible
+  return null;
 }
