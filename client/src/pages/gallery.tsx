@@ -72,27 +72,27 @@ export default function Gallery() {
           </h1>
 
           {/* Decorative elements positioned absolutely on the text */}
-          <motion.div 
+            <motion.div 
             className="absolute -top-4 -left-8 w-16 h-16 flex items-center justify-center"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          >
-            ❤️
-          </motion.div>
-          <motion.div 
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            >
+              ❤️
+            </motion.div>
+            <motion.div 
             className="absolute top-1/2 right-1/4 w-16 h-16 flex items-center justify-center transform -translate-y-1/2"
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            🌸
-          </motion.div>
-          <motion.div 
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              🌸
+            </motion.div>
+            <motion.div 
             className="absolute -bottom-4 -right-8 w-16 h-16 flex items-center justify-center"
-            animate={{ rotate: -360 }}
-            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          >
-            ❤️
-          </motion.div>
+              animate={{ rotate: -360 }}
+              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+            >
+              ❤️
+            </motion.div>
         </motion.div>
 
         {/* Gallery Grid */}

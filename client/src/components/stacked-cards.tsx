@@ -1,0 +1,77 @@
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { Card } from "@/components/ui/card";
+
+interface StackedCard {
+  id: string;
+  title: string;
+  content: React.ReactNode;
+  backgroundColor?: string;
+}
+
+interface StackedCardsProps {
+  cards: StackedCard[];
+  className?: string;
+}
+
+export default function StackedCards({ cards, className = "" }: StackedCardsProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  return (
+    <div ref={containerRef} className={`relative ${className}`}>
+      {cards.map((card, index) => {
+        const cardRef = useRef<HTMLDivElement>(null);
+        const { scrollYProgress } = useScroll({
+          target: cardRef,
+          offset: ["start end", "start start"]
+        });
+
+        const yTransform = useTransform(
+          scrollYProgress,
+          [0, 1],
+          [0, -100] // Move card to top of viewport
+        );
+
+        return (
+          <motion.div
+            ref={cardRef}
+            key={card.id}
+            className="relative mb-8 md:mb-12"
+            style={{ 
+              y: yTransform,
+              zIndex: index + 1,
+              position: "sticky" as any,
+              top: "120px"
+            }}
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ 
+              duration: 0.8, 
+              delay: index * 0.2,
+              ease: "easeOut"
+            }}
+            viewport={{ 
+              once: true, 
+              margin: "-100px 0px -200px 0px" 
+            }}
+          >
+            <Card 
+              className={`
+                p-8 backdrop-blur-sm border-0 shadow-lg 
+                transform transition-transform hover:scale-[1.02]
+                ${card.backgroundColor || "bg-white/80"}
+              `}
+            >
+              <h3 className="text-2xl md:text-3xl font-serif text-[hsl(342,69%,29%)] mb-6 text-center">
+                {card.title}
+              </h3>
+              <div className="text-gray-700 leading-relaxed">
+                {card.content}
+              </div>
+            </Card>
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+} 

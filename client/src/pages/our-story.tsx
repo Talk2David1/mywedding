@@ -8,6 +8,8 @@ import ConfettiBackground from "@/components/confetti-background";
 import ConfettiBurst from "@/components/confetti-burst";
 import NavigationBar from "@/components/navigation-bar";
 import Footer from "@/components/footer";
+import StackedCards from "@/components/stacked-cards";
+import PhotoPanels from "@/components/photo-panels";
 
 export default function OurStory() {
   const storyQuestions = [
@@ -50,20 +52,29 @@ export default function OurStory() {
 
   const galleryPhotos = [
     {
+      id: "1",
       src: "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=500",
       alt: "Couple portrait"
     },
     {
+      id: "2", 
       src: "https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=500",
       alt: "Dancing together"
     },
     {
+      id: "3",
       src: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=500",
       alt: "Formal wear"
     },
     {
+      id: "4",
       src: "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?ixlib=rb-4.0.3&ixid=MnwxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=500",
       alt: "Romantic moment"
+    },
+    {
+      id: "5",
+      src: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=500",
+      alt: "Wedding celebration"
     }
   ];
 
@@ -76,90 +87,81 @@ export default function OurStory() {
       
       <NavigationBar currentPage="our-story" showBackButton={true} />
 
-      <div className="container mx-auto px-4 py-12">
-        {/* Hero Section */}
+      <div className="container mx-auto px-4 pb-12">
+        {/* Hero Banner */}
         <motion.div 
-          className="text-center mb-16"
+          className="flex flex-col lg:flex-row items-center gap-6 mb-12 bg-gradient-to-r from-rose-50 to-pink-50 rounded-2xl pt-4 pb-6 lg:pt-6 lg:pb-8 px-8 lg:px-12"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <p className="text-lg font-script text-[hsl(342,69%,29%)] mb-4">
-            Celebrating love in its purest form
-          </p>
-          <h1 className="text-5xl md:text-7xl font-serif mb-8">
-          </h1>
-
-          {/* Gallery Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-12">
-            {galleryPhotos.map((photo, index) => (
-              <motion.div
-                key={index}
-                className="overflow-hidden rounded-xl shadow-lg"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <img 
-                  src={photo.src}
-                  alt={photo.alt}
-                  className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </motion.div>
-            ))}
+          {/* Left Text Section */}
+          <div className="flex-1 text-left space-y-4">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center">
+                <span className="text-white text-sm">❤️</span>
+              </div>
+              <span className="text-sm text-[hsl(342,69%,29%)]">❤️</span>
+            </div>
+            <p className="text-xl font-script text-[hsl(342,69%,29%)]">
+              Celebrating love in its purest form
+            </p>
+            <h1 className="text-3xl lg:text-5xl font-bold text-[hsl(342,69%,29%)]">
+              FROM LINKEDIN CONNECTION
+            </h1>
+            <h2 className="text-4xl lg:text-6xl font-bold text-pink-400">
+              TO CONVICTION
+            </h2>
           </div>
 
-          {/* Decorative Heart */}
-          <motion.div 
-            className="flex justify-center"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-          >
-            <div className="w-16 h-16 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center">
-              <Heart className="text-white text-2xl fill-current" />
-            </div>
-          </motion.div>
+          {/* Right Photo Panels */}
+          <div className="flex-1">
+            <PhotoPanels photos={galleryPhotos} />
+          </div>
+        </motion.div>
+
+        {/* Decorative Heart */}
+        <motion.div 
+          className="flex justify-center mb-12"
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.8 }}
+        >
+          <div className="w-16 h-16 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center">
+            <Heart className="text-white text-2xl fill-current" />
+          </div>
         </motion.div>
 
         {/* Q&A Section */}
-        <div className="max-w-4xl mx-auto space-y-8">
-          {storyQuestions.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Card className={`p-8 ${cardColors[index % cardColors.length]} backdrop-blur-sm border-0 shadow-lg`}>
-                <h3 className="text-2xl md:text-3xl font-serif text-[hsl(342,69%,29%)] mb-6 text-center">
-                  {item.question}
-                </h3>
-                
-                <div className="space-y-6">
-                  {item.answers.map((answer, answerIndex) => (
-                    <div key={answerIndex}>
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="w-8 h-8 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center">
-                          <span className="text-white font-script text-sm font-bold">
-                            {answer.name === "Esther" ? "E" : answer.name === "Basil" ? "B" : "E&B"}
-                          </span>
-                        </div>
-                        <span className="font-serif font-semibold text-[hsl(342,69%,29%)] text-lg">
-                          {answer.name}
+        <StackedCards
+          cards={storyQuestions.map((item, index) => ({
+            id: `question-${index}`,
+            title: item.question,
+            backgroundColor: cardColors[index % cardColors.length],
+            content: (
+              <div className="space-y-6">
+                {item.answers.map((answer, answerIndex) => (
+                  <div key={answerIndex}>
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-8 h-8 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center">
+                        <span className="text-white font-script text-sm font-bold">
+                          {answer.name === "Esther" ? "E" : answer.name === "Basil" ? "B" : "E&B"}
                         </span>
                       </div>
-                      <p className="text-gray-700 leading-relaxed ml-11 text-base">
-                        {answer.text}
-                      </p>
+                      <span className="font-serif font-semibold text-[hsl(342,69%,29%)] text-lg">
+                        {answer.name}
+                      </span>
                     </div>
-                  ))}
-                </div>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
+                    <p className="text-gray-700 leading-relaxed ml-11 text-base">
+                      {answer.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )
+          }))}
+          className="max-w-4xl mx-auto"
+        />
 
         {/* Closing Message */}
         <motion.div 
