@@ -27,50 +27,9 @@ export default function Registry() {
 
       <div className="container mx-auto px-4 py-12">
         {/* Hero Section */}
-        <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h1 className="text-6xl md:text-8xl font-serif text-[hsl(342,69%,29%)] mb-8">
-            REGISTRY
-          </h1>
 
-          {/* Hero Image */}
-          <motion.div 
-            className="max-w-2xl mx-auto mb-12"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <img 
-              src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
-              alt="Beautiful couple"
-              className="w-full h-96 object-cover rounded-xl shadow-lg"
-            />
-          </motion.div>
-        </motion.div>
 
-        {/* Thank You Message */}
-        <motion.div 
-          className="max-w-4xl mx-auto mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <Card className="p-8 bg-white/80 backdrop-blur-sm border-0 shadow-lg">
-            <div className="text-center">
-              <h2 className="text-3xl font-serif text-[hsl(342,69%,29%)] mb-6">
-                Thank you for checking in on Us. 😃
-              </h2>
-              <p className="text-xl text-gray-700 mb-6">
-                We truly appreciate your presence at our wedding. 🙏🏾
-              </p>
-            </div>
-          </Card>
-        </motion.div>
+
 
         {/* Gift Section */}
         <motion.div 
@@ -94,20 +53,20 @@ export default function Registry() {
               {/* Account 1 */}
               <div className="bg-gradient-to-br from-rose-100 to-pink-100 p-6 rounded-lg">
                 <h3 className="text-xl font-serif text-[hsl(342,69%,29%)] mb-4 text-center">
-                  Esther's Account
+                  $USD
                 </h3>
                 <div className="space-y-3">
                   <div className="bg-white/80 p-3 rounded flex justify-between items-center">
-                    <span className="text-sm text-gray-600">Account Name:</span>
+                    <span className="text-sm text-gray-600">Bank Name:</span>
                     <div className="flex items-center gap-2">
-                      <span className="font-medium">Esther Adeboyejo</span>
+                      <span className="font-medium">Lead Bank</span>
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => copyToClipboard("Esther Adeboyejo", "esther-name")}
+                        onClick={() => copyToClipboard("Lead Bank", "usd-bank")}
                         className="p-1 h-6 w-6"
                       >
-                        {copiedField === "esther-name" ? (
+                        {copiedField === "usd-bank" ? (
                           <Check className="h-3 w-3 text-green-600" />
                         ) : (
                           <Copy className="h-3 w-3" />
@@ -118,14 +77,14 @@ export default function Registry() {
                   <div className="bg-white/80 p-3 rounded flex justify-between items-center">
                     <span className="text-sm text-gray-600">Account Number:</span>
                     <div className="flex items-center gap-2">
-                      <span className="font-medium">2206728391</span>
+                      <span className="font-medium">211163111348</span>
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => copyToClipboard("2206728391", "esther-number")}
+                        onClick={() => copyToClipboard("211163111348", "usd-number")}
                         className="p-1 h-6 w-6"
                       >
-                        {copiedField === "esther-number" ? (
+                        {copiedField === "usd-number" ? (
                           <Check className="h-3 w-3 text-green-600" />
                         ) : (
                           <Copy className="h-3 w-3" />
@@ -134,16 +93,70 @@ export default function Registry() {
                     </div>
                   </div>
                   <div className="bg-white/80 p-3 rounded flex justify-between items-center">
-                    <span className="text-sm text-gray-600">Bank:</span>
+                    <span className="text-sm text-gray-600">ACH Routing:</span>
                     <div className="flex items-center gap-2">
-                      <span className="font-medium">UBA</span>
+                      <span className="font-medium">101019644</span>
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => copyToClipboard("UBA", "esther-bank")}
+                        onClick={() => copyToClipboard("101019644", "usd-ach")}
                         className="p-1 h-6 w-6"
                       >
-                        {copiedField === "esther-bank" ? (
+                        {copiedField === "usd-ach" ? (
+                          <Check className="h-3 w-3 text-green-600" />
+                        ) : (
+                          <Copy className="h-3 w-3" />
+                        )}
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="bg-white/80 p-3 rounded flex justify-between items-center">
+                    <span className="text-sm text-gray-600">Wire Routing:</span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium">101019644</span>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => copyToClipboard("101019644", "usd-wire")}
+                        className="p-1 h-6 w-6"
+                      >
+                        {copiedField === "usd-wire" ? (
+                          <Check className="h-3 w-3 text-green-600" />
+                        ) : (
+                          <Copy className="h-3 w-3" />
+                        )}
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="bg-white/80 p-3 rounded flex justify-between items-center">
+                    <span className="text-sm text-gray-600">Account Type:</span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium">Checking</span>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => copyToClipboard("Checking", "usd-type")}
+                        className="p-1 h-6 w-6"
+                      >
+                        {copiedField === "usd-type" ? (
+                          <Check className="h-3 w-3 text-green-600" />
+                        ) : (
+                          <Copy className="h-3 w-3" />
+                        )}
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="bg-white/80 p-3 rounded flex justify-between items-center">
+                    <span className="text-sm text-gray-600">Bank Address:</span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium">1801 Main St., Kansas City, MO 64108</span>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => copyToClipboard("1801 Main St., Kansas City, MO 64108", "usd-address")}
+                        className="p-1 h-6 w-6"
+                      >
+                        {copiedField === "usd-address" ? (
                           <Check className="h-3 w-3 text-green-600" />
                         ) : (
                           <Copy className="h-3 w-3" />
@@ -157,7 +170,7 @@ export default function Registry() {
               {/* Account 2 */}
               <div className="bg-gradient-to-br from-rose-100 to-pink-100 p-6 rounded-lg">
                 <h3 className="text-xl font-serif text-[hsl(342,69%,29%)] mb-4 text-center">
-                  Basil's Account
+                  Nigerian Account
                 </h3>
                 <div className="space-y-3">
                   <div className="bg-white/80 p-3 rounded flex justify-between items-center">

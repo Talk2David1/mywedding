@@ -20,7 +20,7 @@ export default function NavigationBar({ currentPage, showBackButton = false }: N
     { label: "Gallery", href: "/gallery" },
     { label: "Registry", href: "/registry" },
     { label: "Schedule", href: "/schedule" },
-    { label: "RSVP", href: "/schedule#rsvp" }
+    { label: "RSVP", href: "/rsvp" }
   ];
 
   const handleNavigation = (href: string) => {
@@ -136,7 +136,7 @@ export default function NavigationBar({ currentPage, showBackButton = false }: N
                   Schedule
                 </button>
                 <button 
-                  onClick={() => navigate("/schedule#rsvp")}
+                  onClick={() => navigate("/rsvp")}
                   className={`font-script font-medium transition-colors ${
                     isCurrentPage("rsvp") 
                       ? "text-[hsl(342,69%,29%)] border border-[hsl(342,69%,29%)] px-3 py-1 rounded"

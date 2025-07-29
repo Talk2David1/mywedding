@@ -61,7 +61,7 @@ export default function ConfettiBurst() {
             '#f59e0b', '#10b981', '#059669', '#3b82f6', '#1d4ed8',
             '#8b5cf6', '#7c3aed', '#ef4444', '#dc2626', '#ffffff',
           ],
-        });
+      });
       }, 400);
     };
 

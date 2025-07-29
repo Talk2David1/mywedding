@@ -3,7 +3,7 @@ import { Heart, ArrowLeft, MapPin, Clock, Phone, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useLocation } from "wouter";
-import { useState } from "react";
+
 import CountdownTimer from "@/components/countdown-timer";
 import ConfettiBackground from "@/components/confetti-background";
 import ConfettiBurst from "@/components/confetti-burst";
@@ -11,18 +11,6 @@ import NavigationBar from "@/components/navigation-bar";
 import Footer from "@/components/footer";
 
 export default function Schedule() {
-  const [rsvpForm, setRsvpForm] = useState({
-    name: "",
-    email: "",
-    attendance: "",
-    guests: "1",
-    message: ""
-  });
-
-  const handleRsvpSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("RSVP submitted:", rsvpForm);
-  };
 
   return (
     <div className="min-h-screen bg-rose-50 relative">
@@ -68,114 +56,7 @@ export default function Schedule() {
           </motion.div>
         </motion.div>
 
-        {/* RSVP Section */}
-        <section id="rsvp" className="mb-20">
-          <motion.div 
-            className="max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <Card className="p-8 bg-white/80 backdrop-blur-sm border-0 shadow-lg">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center text-white font-bold text-xl">
-                  01
-                </div>
-                <h2 className="text-3xl font-serif text-[hsl(342,69%,29%)]">RSVP FORM</h2>
-              </div>
-              
-              <p className="text-gray-700 mb-8">
-                Please take a moment to let us know if you'll be able to join us by filling out the contact form below.
-              </p>
 
-              <form onSubmit={handleRsvpSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      value={rsvpForm.name}
-                      onChange={(e) => setRsvpForm({...rsvpForm, name: e.target.value})}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[hsl(342,69%,29%)] focus:border-transparent"
-                      placeholder="Your full name"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      value={rsvpForm.email}
-                      onChange={(e) => setRsvpForm({...rsvpForm, email: e.target.value})}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[hsl(342,69%,29%)] focus:border-transparent"
-                      placeholder="your.email@example.com"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Will you attend? *
-                    </label>
-                    <select
-                      required
-                      value={rsvpForm.attendance}
-                      onChange={(e) => setRsvpForm({...rsvpForm, attendance: e.target.value})}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[hsl(342,69%,29%)] focus:border-transparent"
-                    >
-                      <option value="">Please select</option>
-                      <option value="yes">Yes, I'll be there!</option>
-                      <option value="no">Sorry, can't make it</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Number of Guests
-                    </label>
-                    <select
-                      value={rsvpForm.guests}
-                      onChange={(e) => setRsvpForm({...rsvpForm, guests: e.target.value})}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[hsl(342,69%,29%)] focus:border-transparent"
-                    >
-                      <option value="1">Just me</option>
-                      <option value="2">2 people</option>
-                      <option value="3">3 people</option>
-                      <option value="4">4 people</option>
-                      <option value="5+">5+ people</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Special Message (Optional)
-                  </label>
-                  <textarea
-                    value={rsvpForm.message}
-                    onChange={(e) => setRsvpForm({...rsvpForm, message: e.target.value})}
-                    rows={4}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[hsl(342,69%,29%)] focus:border-transparent"
-                    placeholder="Any special wishes or dietary requirements..."
-                  />
-                </div>
-
-                <Button 
-                  type="submit"
-                  className="w-full py-3 bg-[hsl(342,69%,29%)] hover:bg-[hsl(342,60%,40%)] text-white font-serif text-lg"
-                >
-                  Send RSVP
-                </Button>
-              </form>
-            </Card>
-          </motion.div>
-        </section>
 
         {/* Event Details Section */}
         <section className="mb-20">

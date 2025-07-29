@@ -401,8 +401,8 @@ export default function Home() {
         }}
         onMouseLeave={() => {
           if (!isModalDisabled) {
-            const timeout = setTimeout(() => setIsActionModalOpen(false), 300);
-            setHoverTimeout(timeout);
+          const timeout = setTimeout(() => setIsActionModalOpen(false), 300);
+          setHoverTimeout(timeout);
           }
         }}
       >

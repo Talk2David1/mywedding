@@ -10,6 +10,7 @@ import OurStory from "@/pages/our-story";
 import Gallery from "@/pages/gallery";
 import Registry from "@/pages/registry";
 import Schedule from "@/pages/schedule";
+import RSVP from "@/pages/rsvp";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -20,6 +21,7 @@ function Router() {
       <Route path="/gallery" component={Gallery} />
       <Route path="/registry" component={Registry} />
       <Route path="/schedule" component={Schedule} />
+      <Route path="/rsvp" component={RSVP} />
       <Route component={NotFound} />
     </Switch>
   );
