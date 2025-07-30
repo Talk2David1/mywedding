@@ -360,7 +360,7 @@ export default function Home() {
             </div>
             
             {/* Second image - arched frame */}
-            <div className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 relative">
+            <div className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 relative transform rotate-180">
               {/* Outer div: Creates the arched border frame */}
               <div className="absolute inset-0 border-4 border-pink-200 rounded-t-[50%] rounded-b-lg"></div>
               
@@ -369,7 +369,7 @@ export default function Home() {
                 <img 
                   src={weddingPhotos[1].src}
                   alt={weddingPhotos[1].alt}
-                  className="w-full h-full object-cover" 
+                  className="w-full h-full object-cover transform -rotate-180" 
                 />
               </div>
             </div>
@@ -384,7 +384,7 @@ export default function Home() {
             </div>
             
             {/* Fourth image - arched frame */}
-            <div className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 relative">
+            <div className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 relative transform rotate-180">
               {/* Outer div: Creates the arched border frame */}
               <div className="absolute inset-0 border-4 border-pink-200 rounded-t-[50%] rounded-b-lg"></div>
               
@@ -393,7 +393,7 @@ export default function Home() {
                 <img 
                   src={weddingPhotos[3].src}
                   alt={weddingPhotos[3].alt}
-                  className="w-full h-full object-cover" 
+                  className="w-full h-full object-cover transform -rotate-180" 
                 />
               </div>
             </div>
