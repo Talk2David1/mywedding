@@ -18,7 +18,11 @@ export default function ActionModal({ isOpen, onClose, onItemClicked }: ActionMo
       icon: <MapPin className="h-5 w-5" />,
       text: "Get Direction",
       onClick: () => {
-        // Handle get direction
+        // Open Google Maps in new tab
+        const address = "Aquila Events Hub, Ikorodu, Lagos State, Nigeria";
+        const encodedAddress = encodeURIComponent(address);
+        const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
+        window.open(googleMapsUrl, '_blank');
         onClose();
         onItemClicked?.();
       }
