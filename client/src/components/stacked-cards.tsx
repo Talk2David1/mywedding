@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef } from "react";
 import { Card } from "@/components/ui/card";
 
@@ -21,16 +21,7 @@ export default function StackedCards({ cards, className = "" }: StackedCardsProp
     <div ref={containerRef} className={`relative ${className}`}>
       {cards.map((card, index) => {
         const cardRef = useRef<HTMLDivElement>(null);
-        const { scrollYProgress } = useScroll({
-          target: cardRef,
-          offset: ["start end", "start start"]
-        });
-
-        const yTransform = useTransform(
-          scrollYProgress,
-          [0, 1],
-          [0, -100] // Move card to top of viewport
-        );
+        // Remove scroll-based transform to let sticky positioning work naturally
 
         return (
           <motion.div
@@ -38,10 +29,9 @@ export default function StackedCards({ cards, className = "" }: StackedCardsProp
             key={card.id}
             className="relative mb-8 md:mb-12"
             style={{ 
-              y: yTransform,
               zIndex: index + 1,
               position: "sticky" as any,
-              top: "120px"
+              top: `${120 + (index * 10)}px`
             }}
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
