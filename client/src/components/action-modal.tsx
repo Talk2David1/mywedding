@@ -89,7 +89,7 @@ export default function ActionModal({ isOpen, onClose, onItemClicked }: ActionMo
                 <Button
                   key={index}
                   variant="ghost"
-                  className={`w-full justify-start gap-3 h-14 rounded-xl font-medium transition-colors ${
+                  className={`w-full justify-center gap-3 h-14 rounded-xl font-medium transition-colors ${
                     index === 0 
                       ? "bg-[#800000] text-white hover:bg-pink-100 hover:text-[#800000]" 
                       : "bg-[#800000] text-white hover:bg-pink-100 hover:text-[#800000]"
