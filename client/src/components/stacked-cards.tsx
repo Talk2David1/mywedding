@@ -27,7 +27,7 @@ export default function StackedCards({ cards, className = "" }: StackedCardsProp
           <motion.div
             ref={cardRef}
             key={card.id}
-            className="relative mb-8 md:mb-12"
+            className="relative mb-8 md:mb-12 flex items-start gap-6"
             style={{ 
               zIndex: index + 1,
               position: "sticky" as any,
@@ -45,9 +45,17 @@ export default function StackedCards({ cards, className = "" }: StackedCardsProp
               margin: "-100px 0px -200px 0px" 
             }}
           >
+            {/* Decorative icon on the left */}
+            <div className="flex-shrink-0 mt-4">
+              <div className="w-8 h-8 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center">
+                <span className="text-white text-sm">❤️</span>
+              </div>
+            </div>
+            
+            {/* Card content on the right */}
             <Card 
               className={`
-                p-8 backdrop-blur-sm border-0 shadow-lg 
+                flex-1 p-8 backdrop-blur-sm border-0 shadow-lg 
                 transform transition-transform hover:scale-[1.02]
                 ${card.backgroundColor || "bg-white/80"}
               `}

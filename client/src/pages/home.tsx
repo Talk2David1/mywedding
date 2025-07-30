@@ -394,7 +394,7 @@ export default function Home() {
 
       {/* Bottom Action Bar with Modal */}
       <div 
-        className="fixed bottom-4 md:bottom-8 lg:bottom-20 left-1/2 transform -translate-x-1/2 z-30 w-full px-4"
+        className="fixed bottom-12 md:bottom-4 lg:bottom-10 left-1/2 transform -translate-x-1/2 z-30 w-full px-4"
         onMouseEnter={() => {
           if (!isModalDisabled && hoverTimeout) clearTimeout(hoverTimeout);
           if (!isModalDisabled) setIsActionModalOpen(true);
