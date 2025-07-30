@@ -359,13 +359,19 @@ export default function Home() {
               </div>
             </div>
             
-            {/* Second image - smaller */}
-            <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full border-2 border-pink-200 overflow-hidden shadow-lg">
-              <img 
-                src={weddingPhotos[1].src}
-                alt={weddingPhotos[1].alt}
-                className="w-full h-full object-cover" 
-              />
+            {/* Second image - arched frame */}
+            <div className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 relative">
+              {/* Outer div: Creates the arched border frame */}
+              <div className="absolute inset-0 border-4 border-pink-200 rounded-t-[50%] rounded-b-lg"></div>
+              
+              {/* Inner div: Creates the curved image container */}
+              <div className="absolute inset-2 bg-amber-50 rounded-t-[50%] rounded-b-md overflow-hidden">
+                <img 
+                  src={weddingPhotos[1].src}
+                  alt={weddingPhotos[1].alt}
+                  className="w-full h-full object-cover" 
+                />
+              </div>
             </div>
             
             {/* Middle image - larger and centered */}
@@ -392,13 +398,19 @@ export default function Home() {
               </div>
             </div>
             
-            {/* Fifth image - smaller */}
-            <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full border-2 border-pink-200 overflow-hidden shadow-lg">
-              <img 
-                src={weddingPhotos[4].src}
-                alt={weddingPhotos[4].alt}
-                className="w-full h-full object-cover" 
-              />
+            {/* Fifth image - arched frame */}
+            <div className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 relative">
+              {/* Outer div: Creates the arched border frame */}
+              <div className="absolute inset-0 border-4 border-pink-200 rounded-t-[50%] rounded-b-lg"></div>
+              
+              {/* Inner div: Creates the curved image container */}
+              <div className="absolute inset-2 bg-amber-50 rounded-t-[50%] rounded-b-md overflow-hidden">
+                <img 
+                  src={weddingPhotos[4].src}
+                  alt={weddingPhotos[4].alt}
+                  className="w-full h-full object-cover" 
+                />
+              </div>
             </div>
           </motion.div>
         </div>
