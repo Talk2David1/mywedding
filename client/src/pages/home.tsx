@@ -124,7 +124,7 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <CountdownTimer targetDate="2025-08-02T00:00:00" />
+          <CountdownTimer targetDate="2025-10-02T00:00:00" />
         </motion.div>
 
         {/* Heart Icon */}
