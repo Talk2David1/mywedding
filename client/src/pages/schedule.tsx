@@ -67,52 +67,136 @@ export default function Schedule() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <Card className="p-8 bg-white/80 backdrop-blur-sm border-0 shadow-lg">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-12 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center text-white font-bold text-xl">
-                  02
-                </div>
-                <h2 className="text-3xl font-serif text-[hsl(342,69%,29%)]">EVENT DETAILS</h2>
+            <Card className="p-8 bg-white/90 backdrop-blur-sm border-0 shadow-lg rounded-2xl relative overflow-hidden">
+              {/* Decorative champagne glasses illustration */}
+              <div className="absolute top-4 right-4 opacity-20">
+                <svg width="120" height="120" viewBox="0 0 120 120" className="text-rose-300">
+                  <path d="M30 40 L30 80 L35 85 L35 95 L25 95 L25 100 L35 100 L35 95 L45 95 L45 85 L50 80 L50 40 Z" fill="currentColor" stroke="currentColor" strokeWidth="1"/>
+                  <path d="M70 40 L70 80 L75 85 L75 95 L65 95 L65 100 L75 100 L75 95 L85 95 L85 85 L90 80 L90 40 Z" fill="currentColor" stroke="currentColor" strokeWidth="1"/>
+                  <path d="M25 35 L55 35" stroke="currentColor" strokeWidth="2" fill="none"/>
+                  <path d="M65 35 L95 35" stroke="currentColor" strokeWidth="2" fill="none"/>
+                </svg>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-8">
-                {/* Date & Time */}
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <Clock className="h-6 w-6 text-[hsl(342,69%,29%)]" />
-                    <h3 className="text-xl font-serif text-[hsl(342,69%,29%)]">Date & Time</h3>
+              {/* Wedding Ceremony Section */}
+              <div className="mb-12">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center text-white font-bold text-lg">
+                    01
                   </div>
-                  <div className="pl-9">
-                    <p className="text-lg font-medium text-gray-800">Saturday, August 2nd, 2025</p>
-                    <p className="text-gray-600">Ceremony begins at 11:00 AM</p>
-                    <p className="text-gray-600">Reception to follow</p>
-                  </div>
+                  <h2 className="text-2xl md:text-3xl font-serif text-[hsl(342,69%,29%)] uppercase tracking-wide">
+                    WEDDING CEREMONY
+                  </h2>
                 </div>
+                
+                <p className="text-[hsl(342,69%,29%)] mb-6 text-lg">
+                  Join us as we take our vows. Please arrive 15 minutes early to be seated before the ceremony begins
+                </p>
+                
+                <hr className="border-[hsl(342,69%,29%)] mb-6" />
 
-                {/* Location */}
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <MapPin className="h-6 w-6 text-[hsl(342,69%,29%)]" />
-                    <h3 className="text-xl font-serif text-[hsl(342,69%,29%)]">Location</h3>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 border-2 border-[hsl(342,69%,29%)] rounded-full flex items-center justify-center flex-shrink-0">
+                      <Clock className="h-5 w-5 text-[hsl(342,69%,29%)]" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-medium text-rose-400 mb-1">Date</h3>
+                      <p className="text-[hsl(342,69%,29%)] font-medium">2nd August 2025</p>
+                    </div>
                   </div>
-                  <div className="pl-9">
-                    <p className="text-lg font-medium text-gray-800">Aquila Events Hub</p>
-                    <p className="text-gray-600">Ikorodu, Lagos State</p>
-                    <p className="text-gray-600">Nigeria</p>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 border-2 border-[hsl(342,69%,29%)] rounded-full flex items-center justify-center flex-shrink-0">
+                      <Clock className="h-5 w-5 text-[hsl(342,69%,29%)]" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-medium text-rose-400 mb-1">Time</h3>
+                      <p className="text-[hsl(342,69%,29%)] font-medium">11:00AM</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 border-2 border-[hsl(342,69%,29%)] rounded-full flex items-center justify-center flex-shrink-0">
+                      <Phone className="h-5 w-5 text-[hsl(342,69%,29%)]" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-medium text-rose-400 mb-1">RSVP</h3>
+                      <p className="text-[hsl(342,69%,29%)] font-medium">+234 905 896 8649</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 border-2 border-[hsl(342,69%,29%)] rounded-full flex items-center justify-center flex-shrink-0">
+                      <MapPin className="h-5 w-5 text-[hsl(342,69%,29%)]" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-medium text-rose-400 mb-1">Location</h3>
+                      <p className="text-[hsl(342,69%,29%)] font-medium">Aquila Events Hub, No 40 Tos Benson Road</p>
+                      <p className="text-[hsl(342,69%,29%)] font-medium">Ikorodu Ikorodu, Lagos 100001</p>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Contact Info */}
-              <div className="mt-8 pt-8 border-t border-gray-200">
-                <div className="flex items-center gap-3 mb-4">
-                  <Phone className="h-6 w-6 text-[hsl(342,69%,29%)]" />
-                  <h3 className="text-xl font-serif text-[hsl(342,69%,29%)]">Contact</h3>
+              {/* Reception Celebration Section */}
+              <div>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 bg-[hsl(342,69%,29%)] rounded-full flex items-center justify-center text-white font-bold text-lg">
+                    02
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-serif text-[hsl(342,69%,29%)] uppercase tracking-wide">
+                    RECEPTION CELEBRATION
+                  </h2>
                 </div>
-                <div className="pl-9">
-                  <p className="text-gray-700">For any questions or special arrangements:</p>
-                  <p className="text-lg font-medium text-gray-800 mt-2">+234 xxx xxx xxxx</p>
-                  <p className="text-gray-600">We can't wait to celebrate with you!</p>
+                
+                <p className="text-[hsl(342,69%,29%)] mb-6 text-lg">
+                  Join us as we celebrate our love.
+                </p>
+                
+                <hr className="border-[hsl(342,69%,29%)] mb-6" />
+
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 border-2 border-[hsl(342,69%,29%)] rounded-full flex items-center justify-center flex-shrink-0">
+                      <Clock className="h-5 w-5 text-[hsl(342,69%,29%)]" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-medium text-rose-400 mb-1">Date</h3>
+                      <p className="text-[hsl(342,69%,29%)] font-medium">2nd August 2025</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 border-2 border-[hsl(342,69%,29%)] rounded-full flex items-center justify-center flex-shrink-0">
+                      <Clock className="h-5 w-5 text-[hsl(342,69%,29%)]" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-medium text-rose-400 mb-1">Time</h3>
+                      <p className="text-[hsl(342,69%,29%)] font-medium">01:00PM</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 border-2 border-[hsl(342,69%,29%)] rounded-full flex items-center justify-center flex-shrink-0">
+                      <Phone className="h-5 w-5 text-[hsl(342,69%,29%)]" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-medium text-rose-400 mb-1">RSVP</h3>
+                      <p className="text-[hsl(342,69%,29%)] font-medium">+234 905 896 8649</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 border-2 border-[hsl(342,69%,29%)] rounded-full flex items-center justify-center flex-shrink-0">
+                      <MapPin className="h-5 w-5 text-[hsl(342,69%,29%)]" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-medium text-rose-400 mb-1">Location</h3>
+                      <p className="text-[hsl(342,69%,29%)] font-medium">Aquila Events Hub, No 40 Tos Benson Road</p>
+                      <p className="text-[hsl(342,69%,29%)] font-medium">Ikorodu Ikorodu, Lagos 100001</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </Card>
