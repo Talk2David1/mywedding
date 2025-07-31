@@ -67,21 +67,21 @@ export default function TableNumberModal({ isOpen, onClose }: TableNumberModalPr
       
       {/* Modal Content */}
       <motion.div
-        className="bg-white rounded-3xl shadow-xl w-96 md:w-[32rem] lg:w-[40rem] xl:w-[48rem] max-w-[95vw] overflow-hidden"
+        className="bg-white rounded-3xl shadow-xl w-96 md:w-[32rem] lg:w-[40rem] xl:w-[48rem] max-w-[95vw] overflow-hidden relative"
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: isOpen ? 1 : 0.9, opacity: isOpen ? 1 : 0 }}
         exit={{ scale: 0.9, opacity: 0 }}
         transition={{ duration: 0.2 }}
       >
         {/* Close button */}
-        <div className="absolute top-4 right-4 z-10">
+        <div className="absolute top-8 right-2 z-20">
           <Button
             variant="ghost"
             size="sm"
             onClick={handleClose}
-            className="h-8 w-8 p-0 hover:bg-gray-100"
+            className="h-10 w-10 p-0 text-gray-600 hover:text-gray-800"
           >
-            <X className="h-4 w-4" />
+            <X className="h-5 w-5" />
           </Button>
         </div>
 
