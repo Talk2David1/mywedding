@@ -40,7 +40,17 @@ export default function ActionModal({ isOpen, onClose, onItemClicked }: ActionMo
       icon: <Calendar className="h-5 w-5" />,
       text: "Add to Google Calendar",
       onClick: () => {
-        // Handle add to Google calendar
+        // Create Google Calendar event URL
+        const eventDetails = {
+          text: "Wedding Ceremony & Reception",
+          dates: "20241228T140000Z/20241228T220000Z", // December 28, 2024, 2:00 PM - 10:00 PM UTC
+          details: "Join us for our special day! Wedding ceremony and reception at Aquila Events Hub, Ikorodu, Lagos State, Nigeria.",
+          location: "Aquila Events Hub, Ikorodu, Lagos State, Nigeria"
+        };
+        
+        const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventDetails.text)}&dates=${eventDetails.dates}&details=${encodeURIComponent(eventDetails.details)}&location=${encodeURIComponent(eventDetails.location)}`;
+        
+        window.open(googleCalendarUrl, '_blank');
         onClose();
         onItemClicked?.();
       }
@@ -49,7 +59,19 @@ export default function ActionModal({ isOpen, onClose, onItemClicked }: ActionMo
       icon: <Download className="h-5 w-5" />,
       text: "Download Order of Service",
       onClick: () => {
-        // Handle download
+        // Download Order of Service from Google Drive
+        const fileId = "1_c7gTlugswAYj9HPNCZiBvrki6JyOLeR";
+        const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+        
+        // Create a temporary link element to trigger download
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.download = "Order of Service.pdf";
+        link.target = "_blank";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
         onClose();
         onItemClicked?.();
       }
