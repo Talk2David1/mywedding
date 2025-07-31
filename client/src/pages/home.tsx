@@ -91,7 +91,7 @@ export default function Home() {
       <NavigationBar currentPage="home" />
 
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex flex-col justify-start items-center text-center px-4 pt-42 relative">
+      <section id="home" className="h-auto flex flex-col justify-start items-center text-center px-4 pt-42 relative">
         {/* Floating hearts decoration */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div 
@@ -141,12 +141,12 @@ export default function Home() {
 
         {/* Main Heading */}
         <motion.div 
-          className="max-w-4xl mx-auto mb-8"
+          className="max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.6 }}
         >
-          <h1 className="text-3xl md:text-5xl lg:text-5xl font-serif mb-6 leading-tight">
+          <h1 className="text-3xl md:text-5xl lg:text-5xl font-serif mb-2 leading-tight">
             <span className="text-[hsl(332,51%,70%)]">CELEBRATE LOVE,</span>
             <span className="text-[#800000]"> CELEBRATE</span>
             <br />
@@ -155,7 +155,7 @@ export default function Home() {
           </h1>
           
           {/* Couple Names */}
-          <div className="text-4xl md:text-5xl font-script text-[#800000] mt-8">
+          <div className="text-4xl md:text-5xl font-script text-[#800000] mt-4 mb-8">
             Esther & Basil
           </div>
         </motion.div>
@@ -165,7 +165,7 @@ export default function Home() {
       <div className="stripe-pattern w-full"></div>
 
       {/* Photo Gallery Section */}
-      <section id="gallery" className="py-16 bg-white overflow-hidden">
+      <section id="gallery" className="bg-white overflow-hidden">
         <div className="container mx-auto px-4">
           <motion.div 
             className="flex space-x-6 animate-scroll"
