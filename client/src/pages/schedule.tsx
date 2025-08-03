@@ -13,7 +13,15 @@ import Footer from "@/components/footer";
 export default function Schedule() {
 
   return (
-    <div className="min-h-screen bg-rose-50 relative">
+    <div 
+      className="min-h-screen relative"
+      style={{
+        backgroundImage: `linear-gradient(rgba(255, 241, 242, 0.8), rgba(255, 241, 242, 0.8)), url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&h=600')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
       <ConfettiBackground />
       <ConfettiBurst />
       
@@ -41,19 +49,7 @@ export default function Schedule() {
             <CountdownTimer targetDate="2025-08-02T00:00:00" />
           </motion.div>
 
-          {/* Hero Image */}
-          <motion.div 
-            className="max-w-3xl mx-auto mb-12"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-          >
-            <img 
-              src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&h=600"
-              alt="Beautiful couple portrait"
-              className="w-full h-96 object-cover rounded-xl shadow-lg"
-            />
-          </motion.div>
+
         </motion.div>
 
 
