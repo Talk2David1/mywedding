@@ -41,7 +41,7 @@ export default function Schedule() {
 
           {/* Countdown Timer */}
           <motion.div 
-            className="mb-12"
+            className="mb-12 bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
