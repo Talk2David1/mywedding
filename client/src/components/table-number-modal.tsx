@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { X } from "lucide-react";
+import { weddingApi } from "@/services/wedding-api";
+import type { Contact } from "@shared/wedding-schema";
 
 interface TableNumberModalProps {
   isOpen: boolean;
@@ -10,43 +12,44 @@ interface TableNumberModalProps {
 }
 
 export default function TableNumberModal({ isOpen, onClose }: TableNumberModalProps) {
-  const [name, setName] = useState("");
-  const [tableNumber, setTableNumber] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [foundContact, setFoundContact] = useState<Contact | null>(null);
+  const [searchResult, setSearchResult] = useState<"found" | "not-found" | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  // Mock data - replace with actual guest data
-  const guestData = [
-    { name: "John Doe", table: "Table 1" },
-    { name: "Jane Smith", table: "Table 2" },
-    { name: "Mike Johnson", table: "Table 1" },
-    { name: "Sarah Wilson", table: "Table 3" },
-    // Add more guest data as needed
-  ];
-
-  const handleCheckName = () => {
-    if (!name.trim()) return;
+  const handleCheckName = async () => {
+    if (!searchQuery.trim()) return;
     
     setIsLoading(true);
+    setError(null);
+    setFoundContact(null);
+    setSearchResult(null);
     
-    // Simulate API call
-    setTimeout(() => {
-      const guest = guestData.find(
-        g => g.name.toLowerCase().includes(name.toLowerCase())
-      );
+    try {
+      const response = await weddingApi.searchContacts(searchQuery.trim());
       
-      if (guest) {
-        setTableNumber(guest.table);
+      if (response.success && response.data && response.data.length > 0) {
+        // If multiple matches, take the first one
+        const contact = response.data[0];
+        setFoundContact(contact);
+        setSearchResult("found");
       } else {
-        setTableNumber("Not found");
+        setSearchResult("not-found");
       }
-      
+    } catch (err) {
+      console.error('Error searching contacts:', err);
+      setError('Failed to search contacts. Please try again.');
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   };
 
   const handleClose = () => {
-    setName("");
-    setTableNumber(null);
+    setSearchQuery("");
+    setFoundContact(null);
+    setSearchResult(null);
+    setError(null);
     onClose();
   };
 
@@ -90,7 +93,7 @@ export default function TableNumberModal({ isOpen, onClose }: TableNumberModalPr
           {/* Title */}
           <div className="text-center mb-8">
             <h3 className="text-[hsl(342,69%,29%)] text-xl md:text-2xl font-serif leading-relaxed">
-              Hello dear kindly enter your name to find your table number
+              Hello dear, kindly enter your name, email, or phone number to find your table number
             </h3>
           </div>
 
@@ -98,9 +101,9 @@ export default function TableNumberModal({ isOpen, onClose }: TableNumberModalPr
           <div className="flex gap-4 mb-8">
             <Input
               type="text"
-              placeholder="ENTER YOUR NAME"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              placeholder="ENTER YOUR NAME, EMAIL, OR PHONE"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className="flex-1 border-gray-300 focus:border-[hsl(342,69%,29%)] focus:ring-[hsl(342,69%,29%)] text-lg py-3"
               onKeyPress={(e) => {
                 if (e.key === 'Enter') {
@@ -110,33 +113,63 @@ export default function TableNumberModal({ isOpen, onClose }: TableNumberModalPr
             />
             <Button
               onClick={handleCheckName}
-              disabled={!name.trim() || isLoading}
+              disabled={!searchQuery.trim() || isLoading}
               className="bg-pink-100 text-[hsl(342,69%,29%)] hover:bg-pink-200 border border-pink-200 px-6 py-3 text-lg"
             >
-              {isLoading ? "Checking..." : "CHECK NAME..."}
+              {isLoading ? "Checking..." : "CHECK NAME"}
             </Button>
           </div>
 
+          {/* Error message */}
+          {error && (
+            <motion.div
+              className="text-center p-4 rounded-lg bg-red-50 border border-red-200 mb-6"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <p className="text-red-600 font-medium">{error}</p>
+            </motion.div>
+          )}
+
           {/* Result */}
-          {tableNumber && (
+          {searchResult && (
             <motion.div
               className="text-center p-6 rounded-lg"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
             >
-              {tableNumber === "Not found" ? (
-                <p className="text-red-600 font-medium text-lg">
-                  Sorry, we couldn't find your name. Please check the spelling or contact us.
-                </p>
-              ) : (
-                <div>
-                  <p className="text-gray-600 mb-3 text-lg">Your table number is:</p>
-                  <p className="text-3xl font-bold text-[hsl(342,69%,29%)]">
-                    {tableNumber}
+              {searchResult === "not-found" ? (
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                  <p className="text-yellow-800 font-medium text-lg mb-2">
+                    Contact not found
+                  </p>
+                  <p className="text-yellow-700">
+                    Please confirm your information or contact us for assistance.
                   </p>
                 </div>
-              )}
+              ) : foundContact ? (
+                <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+                  <p className="text-gray-600 mb-2 text-lg">Welcome, {foundContact.fullName}!</p>
+                  {foundContact.tableNumber ? (
+                    <div>
+                      <p className="text-gray-600 mb-3 text-lg">Your table number is:</p>
+                      <p className="text-4xl font-bold text-[hsl(342,69%,29%)] mb-2">
+                        Table {foundContact.tableNumber}
+                      </p>
+                    </div>
+                  ) : (
+                    <p className="text-orange-600 font-medium text-lg">
+                      Table assignment pending. Please check back later.
+                    </p>
+                  )}
+                  <div className="mt-4 text-sm text-gray-500">
+                    <p>Email: {foundContact.email}</p>
+                    <p>Phone: {foundContact.phoneNumber}</p>
+                  </div>
+                </div>
+              ) : null}
             </motion.div>
           )}
 

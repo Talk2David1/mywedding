@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { connectToMongoDB } from './mongodb';
 import { weddingStorage } from './wedding-storage';
-import type { CreateWeddingEvent } from '@shared/wedding-schema';
+import type { CreateWeddingEvent, CreateContact } from '@shared/wedding-schema';
 
 const sampleWeddingEvents: CreateWeddingEvent[] = [
   {
@@ -64,6 +64,57 @@ const sampleWeddingEvents: CreateWeddingEvent[] = [
   }
 ];
 
+const sampleContacts: CreateContact[] = [
+  {
+    fullName: "Sarah Johnson",
+    email: "sarah.johnson@email.com",
+    phoneNumber: "+1-555-123-4567",
+    tableNumber: 1
+  },
+  {
+    fullName: "Michael Chen",
+    email: "michael.chen@email.com",
+    phoneNumber: "+1-555-234-5678",
+    tableNumber: 1
+  },
+  {
+    fullName: "Emily Rodriguez",
+    email: "emily.rodriguez@email.com",
+    phoneNumber: "+1-555-345-6789",
+    tableNumber: 2
+  },
+  {
+    fullName: "David Thompson",
+    email: "david.thompson@email.com",
+    phoneNumber: "+1-555-456-7890",
+    tableNumber: 2
+  },
+  {
+    fullName: "Jessica Williams",
+    email: "jessica.williams@email.com",
+    phoneNumber: "+1-555-567-8901",
+    tableNumber: 3
+  },
+  {
+    fullName: "Robert Davis",
+    email: "robert.davis@email.com",
+    phoneNumber: "+1-555-678-9012",
+    tableNumber: 3
+  },
+  {
+    fullName: "Amanda Miller",
+    email: "amanda.miller@email.com",
+    phoneNumber: "+1-555-789-0123",
+    tableNumber: 4
+  },
+  {
+    fullName: "Christopher Brown",
+    email: "christopher.brown@email.com",
+    phoneNumber: "+1-555-890-1234",
+    tableNumber: 4
+  }
+];
+
 export async function seedDatabase() {
   try {
     console.log('Connecting to MongoDB...');
@@ -76,6 +127,16 @@ export async function seedDatabase() {
         console.log(`Created event: ${event.title}`);
       } catch (error) {
         console.log(`Event ${event.title} might already exist, skipping...`);
+      }
+    }
+    
+    console.log('Seeding contacts...');
+    for (const contact of sampleContacts) {
+      try {
+        await weddingStorage.createContact(contact);
+        console.log(`Created contact: ${contact.fullName}`);
+      } catch (error) {
+        console.log(`Contact ${contact.fullName} might already exist, skipping...`);
       }
     }
     

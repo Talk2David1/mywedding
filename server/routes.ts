@@ -381,6 +381,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.get("/api/contacts/search/:query", async (req, res) => {
+    try {
+      const query = req.params.query.toLowerCase().trim();
+      if (!query) {
+        return res.status(400).json({
+          success: false,
+          message: "Search query is required"
+        });
+      }
+
+      const contacts = await weddingStorage.searchContacts(query);
+      res.json({
+        success: true,
+        message: `Found ${contacts.length} matching contacts`,
+        data: contacts,
+        total: contacts.length
+      });
+    } catch (error) {
+      console.error("Error searching contacts:", error);
+      res.status(500).json({
+        success: false,
+        message: "Failed to search contacts"
+      });
+    }
+  });
+
   // Health check endpoint
   app.get("/api/health", (req, res) => {
     res.json({

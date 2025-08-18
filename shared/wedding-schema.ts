@@ -97,6 +97,7 @@ export const contactSchema = z.object({
   fullName: z.string().min(1, "Full name is required"),
   email: z.string().email("Valid email is required"),
   phoneNumber: z.string().min(1, "Phone number is required"),
+  tableNumber: z.number().min(1).max(50).optional(),
   createdAt: z.date().default(() => new Date()),
   updatedAt: z.date().default(() => new Date()),
 });

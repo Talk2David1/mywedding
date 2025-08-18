@@ -1,4 +1,4 @@
-import type { CreateRSVP, RSVP, RSVPResponse, Guest, CreateGuest, WeddingEvent, CreateWeddingEvent } from '@shared/wedding-schema';
+import type { CreateRSVP, RSVP, RSVPResponse, Guest, CreateGuest, WeddingEvent, CreateWeddingEvent, Contact, CreateContact, ContactResponse, ContactListResponse } from '@shared/wedding-schema';
 
 const API_BASE = '/api';
 
@@ -73,6 +73,49 @@ class WeddingApiService {
 
   async getWeddingEvent(id: string): Promise<{ success: boolean; message: string; data: WeddingEvent }> {
     return this.request(`/events/${id}`);
+  }
+
+  // Contact methods
+  async createContact(contactData: CreateContact): Promise<ContactResponse> {
+    return this.request('/contacts', {
+      method: 'POST',
+      body: JSON.stringify(contactData),
+    });
+  }
+
+  async getAllContacts(): Promise<ContactListResponse> {
+    return this.request('/contacts');
+  }
+
+  async getContact(id: string): Promise<ContactResponse> {
+    return this.request(`/contacts/${id}`);
+  }
+
+  async updateContact(id: string, updates: Partial<CreateContact>): Promise<ContactResponse> {
+    return this.request(`/contacts/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(updates),
+    });
+  }
+
+  async deleteContact(id: string): Promise<{ success: boolean; message: string }> {
+    return this.request(`/contacts/${id}`, {
+      method: 'DELETE',
+    });
+  }
+
+  // Search contacts by name, email, or phone
+  async searchContacts(query: string): Promise<ContactListResponse> {
+    if (!query.trim()) {
+      return {
+        success: false,
+        message: "Search query is required",
+        data: [],
+        total: 0
+      };
+    }
+    
+    return this.request<ContactListResponse>(`/contacts/search/${encodeURIComponent(query.trim())}`);
   }
 
   // Health check

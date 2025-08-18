@@ -33,6 +33,7 @@ export interface IWeddingStorage {
   updateContact(id: string, updates: Partial<CreateContact>): Promise<Contact | null>;
   getAllContacts(): Promise<Contact[]>;
   deleteContact(id: string): Promise<boolean>;
+  searchContacts(query: string): Promise<Contact[]>;
 }
 
 export class MongoWeddingStorage implements IWeddingStorage {
@@ -232,6 +233,21 @@ export class MongoWeddingStorage implements IWeddingStorage {
     const collection = getContactCollection();
     const result = await collection.deleteOne({ _id: new ObjectId(id) });
     return result.deletedCount === 1;
+  }
+
+  async searchContacts(query: string): Promise<Contact[]> {
+    const collection = getContactCollection();
+    const searchRegex = new RegExp(query, 'i'); // Case-insensitive search
+    
+    const contacts = await collection.find({
+      $or: [
+        { fullName: { $regex: searchRegex } },
+        { email: { $regex: searchRegex } },
+        { phoneNumber: { $regex: searchRegex } }
+      ]
+    }).sort({ fullName: 1 }).toArray();
+    
+    return contacts.map(contact => ({ ...contact, _id: contact._id.toString() }));
   }
 }
 
