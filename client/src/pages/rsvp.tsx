@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useLocation } from "wouter";
-import CountdownTimer from "@/components/countdown-timer";
 import ConfettiBackground from "@/components/confetti-background";
 import ConfettiBurst from "@/components/confetti-burst";
 import NavigationBar from "@/components/navigation-bar";
@@ -109,10 +108,10 @@ export default function RSVP() {
 
       <NavigationBar currentPage="rsvp" />
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-4">
         {/* Hero Section */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-8"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -120,16 +119,6 @@ export default function RSVP() {
           <h1 className="text-4xl md:text-6xl font-serif text-[hsl(342,69%,29%)] mb-8">
             RSVP TO OUR <span className="text-[hsl(332,51%,70%)]">WEDDING</span>
           </h1>
-
-          {/* Countdown Timer */}
-          <motion.div
-            className="mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-          >
-            <CountdownTimer targetDate="2025-08-02T00:00:00" />
-          </motion.div>
 
           {/* WhatsApp Invite Section */}
           <motion.div

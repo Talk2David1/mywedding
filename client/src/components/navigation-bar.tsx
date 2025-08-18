@@ -96,7 +96,7 @@ export default function NavigationBar({ currentPage, showBackButton = false }: N
                 <img
                   src="https://res.cloudinary.com/dycukxm7r/image/upload/v1755525560/EBLogo-removebg-preview_cskhkd.png"
                   alt="E&B Wedding Logo"
-                  className="w-16 h-16 object-contain cursor-pointer hover:scale-105 hover:rotate-360 transition-transform duration-700"
+                  className="w-8 h-8 md:w-16 md:h-16 object-contain cursor-pointer hover:scale-105 hover:rotate-360 transition-transform duration-700"
                   onClick={handleLogoClick}
                 />
               </div>
@@ -141,10 +141,10 @@ export default function NavigationBar({ currentPage, showBackButton = false }: N
               <Button
                 variant="ghost"
                 size="icon"
-                className="lg:hidden text-[#800000] hover:text-[hsl(342,60%,40%)]"
+                className="lg:hidden text-[#800000] hover:text-[hsl(342,60%,40%)] p-3 bg-pink-200 hover:bg-pink-300 rounded-lg"
                 onClick={() => setIsMobileMenuOpen(true)}
               >
-                <Menu className="h-6 w-6" />
+                <Menu className="h-8 w-8" />
               </Button>
             </div>
           </div>
