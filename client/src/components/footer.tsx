@@ -11,7 +11,7 @@ export default function Footer() {
         >
           {Array.from({ length: 50 }, (_, i) => (
             <span key={i} className="inline-block">
-           LOVE LIKE THIS ● +234 816 617 5255 ● titusdavid39@gmail.com ● ZIKTRON TECHNOLOGIES ●
+           LOVE LIKE THIS  ● +234 816 617 5255 ● titusdavid39@gmail.com ● ZIKTRON TECHNOLOGIES ●
             </span>
           ))}
         </motion.div>

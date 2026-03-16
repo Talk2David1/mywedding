@@ -11,43 +11,47 @@ import Footer from "@/components/footer";
 export default function Gallery() {
   const galleryPhotos = [
     {
-      src: "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=800",
+      src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1755732305/IMG_0681.JPG_s19f99.jpg",
       alt: "Elegant wedding couple portrait"
     },
     {
-      src: "https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=800",
+      src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1755732267/IMG_0678.JPG_ejv7ev.jpg",
       alt: "Bride and groom dancing"
     },
     {
-      src: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=800",
+      src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1755732420/IMG_0674.JPG_ea3rbd.jpg",
       alt: "Wedding couple in white formal wear"
     },
     {
-      src: "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=800",
+      src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1755732331/IMG_0686.JPG_usoacs.jpg",
       alt: "Couple sharing romantic moment"
     },
     {
-      src: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&ixid=MnwxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=800",
+      src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1755732423/IMG_0689.JPG_k9xjdg.jpg",
       alt: "Wedding rings on floral background"
     },
     {
-      src: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=800",
+      src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1755732419/IMG_0671.JPG_jore55.jpg",
       alt: "Beautiful wedding bouquet"
     },
     {
-      src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=800",
+      src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1755732396/IMG_0668.JPG_dmwtgv.jpg",
       alt: "Wedding ceremony setup"
     },
     {
-      src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=800",
+      src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1755732369/IMG_0677.JPG_s1677d.jpg",
       alt: "Groom in formal attire"
     },
+        {
+      src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1755732344/IMG_0690.JPG_uhooq3.jpg",
+      alt: "Couple laughing together"
+    },
     {
-      src: "https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=800",
+      src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1755732364/IMG-20250615-WA0001_mhmpys.jpg",
       alt: "Wedding celebration"
     },
     {
-      src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?ixlib=rb-4.0.3&ixid=MnwxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=800",
+      src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1755732324/IMG_0675.JPG_ibe1u2.jpg",
       alt: "Couple laughing together"
     }
   ];
