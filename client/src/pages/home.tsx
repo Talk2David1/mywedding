@@ -73,6 +73,8 @@ export default function Home() {
       alt: "Pre-wedding pictures",
     },
   ];
+  const carouselPhotos = [...weddingPhotos.slice(2), ...weddingPhotos.slice(0, 2)];
+  const loopingCarouselPhotos = [...carouselPhotos, ...carouselPhotos];
 
   return (
     <div className="min-h-screen bg-rose-50 relative">
@@ -172,14 +174,14 @@ export default function Home() {
       <section id="gallery" className="bg-white overflow-hidden">
         <div className="container mx-auto px-4">
           <motion.div
-            className="flex space-x-6 animate-scroll"
+            className="flex space-x-6 overflow-x-auto touch-pan-x md:overflow-visible md:animate-scroll pb-2 md:pb-0"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
             {/* Duplicate photos for infinite scroll effect */}
-            {[...weddingPhotos, ...weddingPhotos].map((photo, index) => (
+            {loopingCarouselPhotos.map((photo, index) => (
               <motion.div
                 key={index}
                 className="group flex-shrink-0 w-80 h-96 overflow-hidden shadow-lg"
