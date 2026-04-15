@@ -45,18 +45,10 @@ export default function ActionModal({ isOpen, onClose, onItemClicked }: ActionMo
       icon: <Download className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />,
       text: "Download Order of Service",
       onClick: () => {
-        // Download Order of Service from Google Drive
-        const fileId = "1_c7gTlugswAYj9HPNCZiBvrki6JyOLeR";
-        const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
-
-        // Create a temporary link element to trigger download
-        const link = document.createElement('a');
-        link.href = downloadUrl;
-        link.download = "Order of Service.pdf";
-        link.target = "_blank";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        // Open Order of Service hosted on Cloudinary
+        const orderOfServiceUrl =
+          "https://asset.cloudinary.com/dycukxm7r/891079a32bd9d4ec2ac010aa27b48260";
+        window.open(orderOfServiceUrl, "_blank");
 
         onClose();
         onItemClicked?.();
