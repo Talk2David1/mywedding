@@ -1,7 +1,5 @@
 import { motion } from "framer-motion";
-import { Heart, ArrowLeft, Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useLocation } from "wouter";
+import { Heart, X } from "lucide-react";
 import { useState } from "react";
 import ConfettiBackground from "@/components/confetti-background";
 import ConfettiBurst from "@/components/confetti-burst";
@@ -9,6 +7,8 @@ import NavigationBar from "@/components/navigation-bar";
 import Footer from "@/components/footer";
 
 export default function Gallery() {
+  const [selectedPhoto, setSelectedPhoto] = useState<{ src: string; alt: string } | null>(null);
+
   const galleryPhotos = [
     {
       src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1776310781/lv_0_20260415184705_tqnujf.jpg",
@@ -94,6 +94,16 @@ export default function Gallery() {
                 ${index === 0 ? 'col-span-1 sm:col-span-2 row-span-2' : ''}
                 ${index === 2 ? 'sm:col-span-1 lg:col-span-2' : ''}
               `}
+              onClick={() => setSelectedPhoto(photo)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  setSelectedPhoto(photo);
+                }
+              }}
+              role="button"
+              tabIndex={0}
+              aria-label={`Open photo: ${photo.alt}`}
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
@@ -134,6 +144,44 @@ export default function Gallery() {
           </p>
         </motion.div>
       </div>
+
+      {selectedPhoto && (
+        <motion.div
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <button
+            type="button"
+            className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+            onClick={() => setSelectedPhoto(null)}
+            aria-label="Close image preview"
+          />
+
+          <motion.div
+            className="relative z-10 w-full max-w-6xl rounded-lg bg-white p-2 shadow-2xl"
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.2 }}
+          >
+            <button
+              type="button"
+              onClick={() => setSelectedPhoto(null)}
+              className="absolute right-3 top-3 rounded-full bg-black/60 p-2 text-white hover:bg-black/80"
+              aria-label="Close modal"
+            >
+              <X className="h-5 w-5" />
+            </button>
+
+            <img
+              src={selectedPhoto.src}
+              alt={selectedPhoto.alt}
+              className="h-[80vh] w-full rounded-md object-contain"
+            />
+          </motion.div>
+        </motion.div>
+      )}
       
       <Footer />
     </div>
