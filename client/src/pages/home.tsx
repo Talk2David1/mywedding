@@ -493,10 +493,10 @@ export default function Home() {
           >
             <div className="flex w-full min-w-0 items-center justify-center gap-x-1 md:gap-x-2 text-xs md:text-sm text-center">
               <span className="hidden sm:inline">Programme</span>
-              <span className="sm:hidden">Prog</span>
+              <span className="sm:hidden">Programme</span>
               <span className="text-[hsl(332,51%,70%)]">|</span>
               <span className="hidden sm:inline">Calendar</span>
-              <span className="sm:hidden">Cal</span>
+              <span className="sm:hidden">Calendar</span>
               <span className="text-[hsl(332,51%,70%)]">|</span>
               <span className="hidden md:inline">Get Direction</span>
               <span className="sm:inline md:hidden">Direction</span>
