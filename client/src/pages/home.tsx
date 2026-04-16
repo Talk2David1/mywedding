@@ -49,20 +49,8 @@ export default function Home() {
 
   const weddingPhotos = [
     {
-      src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1776227725/DSC_8787_wrwgc9.jpg",
-      alt: "Mymee in traditional attire",
-    },
-    {
-      src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1776227700/DSC_8764_vvhtp1.jpg",
-      alt: "David in traditional attire",
-    },
-    {
       src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1776310781/lv_0_20260415184705_tqnujf.jpg",
       alt: "Mymee and David together",
-    },
-    {
-      src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1776310778/lv_0_20260415190505_b0r0d4.jpg",
-      alt: "Couple portrait",
     },
     {
       src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1776227664/DSC_8782_bqdxop.jpg",
@@ -72,14 +60,16 @@ export default function Home() {
       src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1776227671/PreweddingPictures_odczgq.jpg",
       alt: "Pre-wedding pictures",
     },
+    {
+      src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1776227687/DSC_8756_bbieof.jpg",
+      alt: "Mymee and David candid moment",
+    },
+    {
+      src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1776310778/lv_0_20260415190505_b0r0d4.jpg",
+      alt: "Couple portrait",
+    },
   ];
-  const carouselExcludedSrcs = new Set([
-    "https://res.cloudinary.com/dycukxm7r/image/upload/v1776310781/lv_0_20260415184705_tqnujf.jpg",
-    "https://res.cloudinary.com/dycukxm7r/image/upload/v1776310778/lv_0_20260415190505_b0r0d4.jpg",
-  ]);
-  const carouselPhotos = weddingPhotos.filter(
-    (p) => !carouselExcludedSrcs.has(p.src),
-  );
+  const carouselPhotos = [...weddingPhotos.slice(2), ...weddingPhotos.slice(0, 2)];
   const loopingCarouselPhotos = [...carouselPhotos, ...carouselPhotos];
 
   return (

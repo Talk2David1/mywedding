@@ -11,15 +11,15 @@ import Footer from "@/components/footer";
 export default function Gallery() {
   const galleryPhotos = [
     {
-      src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1776227725/DSC_8787_wrwgc9.jpg",
+      src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1776310781/lv_0_20260415184705_tqnujf.jpg",
       alt: "Mymee in traditional attire"
     },
     {
-      src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1776227700/DSC_8764_vvhtp1.jpg",
+      src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1776227687/DSC_8756_bbieof.jpg",
       alt: "David in traditional attire"
     },
     {
-      src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1776310781/lv_0_20260415184705_tqnujf.jpg",
+      src: "https://res.cloudinary.com/dycukxm7r/image/upload/v1776227680/DSC_8775_ta3pbs.jpg",
       alt: "Mymee and David together"
     },
     {
